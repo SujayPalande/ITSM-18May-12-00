@@ -1,6 +1,6 @@
 import { useAuth } from '../contexts/AuthContext';
 import { useCompanyBranding } from '../contexts/CompanyBrandingContext';
-import { LogOut, User, Home, Zap } from 'lucide-react';
+import { LogOut, User, Home, HardHat } from 'lucide-react';
 import { useLocation } from 'wouter';
 
 interface HeaderProps {
@@ -16,34 +16,28 @@ export default function Header({ currentRole, userName, onProfileClick }: Header
 
   const normalizedRole = currentRole.toLowerCase().trim();
 
-  const roleConfig: Record<string, { color: string; bg: string; label: string; dotClass: string }> = {
-    admin:    { color: '#a78bfa', bg: 'rgba(167,139,250,0.15)', label: 'Administrator',  dotClass: 'bg-violet-400' },
-    engineer: { color: '#60a5fa', bg: 'rgba(96,165,250,0.15)',  label: 'Field Engineer', dotClass: 'bg-blue-400' },
-    hr:       { color: '#34d399', bg: 'rgba(52,211,153,0.15)',  label: 'HR Manager',     dotClass: 'bg-emerald-400' },
-    client:   { color: '#fbbf24', bg: 'rgba(251,191,36,0.15)',  label: 'Client Portal',  dotClass: 'bg-amber-400' },
+  const roleConfig: Record<string, { label: string; dotClass: string; badgeClass: string }> = {
+    admin:    { label: 'Administrator',  dotClass: 'bg-violet-500', badgeClass: 'bg-violet-50 text-violet-700 border-violet-200' },
+    engineer: { label: 'Field Engineer', dotClass: 'bg-blue-500',   badgeClass: 'bg-blue-50 text-blue-700 border-blue-200' },
+    hr:       { label: 'HR Manager',     dotClass: 'bg-emerald-500',badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+    client:   { label: 'Client Portal',  dotClass: 'bg-amber-500',  badgeClass: 'bg-amber-50 text-amber-700 border-amber-200' },
   };
 
   const config = roleConfig[normalizedRole] || roleConfig.engineer;
 
   return (
-    <header className="bg-slate-950 border-b border-white/[0.06] sticky top-0 z-50">
+    <header className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
       <div className="max-w-[1440px] mx-auto px-5 lg:px-8 h-14 flex items-center justify-between gap-4">
 
         <div className="flex items-center gap-3 min-w-0">
-          <div
-            className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
-            style={{ backgroundColor: config.color }}
-          >
-            <Zap className="w-3.5 h-3.5 text-slate-950" />
+          <div className="w-8 h-8 rounded-xl bg-gray-900 flex items-center justify-center shrink-0">
+            <HardHat className="w-4 h-4 text-white" />
           </div>
-          <span className="text-white font-semibold text-[13px] tracking-tight hidden sm:block truncate">
+          <span className="text-gray-900 font-bold text-sm tracking-tight hidden sm:block truncate">
             {branding?.company_name || 'Cybaem Tech'}
           </span>
-          <div className="w-px h-4 bg-white/10 shrink-0" />
-          <span
-            className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest shrink-0"
-            style={{ color: config.color, backgroundColor: config.bg }}
-          >
+          <div className="w-px h-4 bg-gray-200 shrink-0" />
+          <span className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold border shrink-0 ${config.badgeClass}`}>
             {config.label}
           </span>
         </div>
@@ -51,12 +45,12 @@ export default function Header({ currentRole, userName, onProfileClick }: Header
         <div className="flex items-center gap-1 shrink-0">
           <div className="flex items-center gap-2 px-3 py-1.5 mr-1">
             <span className={`w-2 h-2 rounded-full shrink-0 ${config.dotClass}`} />
-            <span className="text-white/60 text-[12px] font-medium hidden sm:block truncate max-w-[120px]">{userName}</span>
+            <span className="text-gray-600 text-xs font-medium hidden sm:block truncate max-w-[120px]">{userName}</span>
           </div>
-          <div className="w-px h-4 bg-white/10 mx-0.5" />
+          <div className="w-px h-4 bg-gray-200 mx-0.5" />
           <button
             onClick={() => setLocation('/')}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-white/50 hover:text-white hover:bg-white/[0.07] rounded-lg transition-all text-[12px] font-medium"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all text-xs font-medium"
           >
             <Home className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Main Portal</span>
@@ -64,7 +58,7 @@ export default function Header({ currentRole, userName, onProfileClick }: Header
           {onProfileClick && (
             <button
               onClick={onProfileClick}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-white/50 hover:text-white hover:bg-white/[0.07] rounded-lg transition-all text-[12px] font-medium"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all text-xs font-medium"
             >
               <User className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Profile</span>
@@ -72,7 +66,7 @@ export default function Header({ currentRole, userName, onProfileClick }: Header
           )}
           <button
             onClick={() => signOut()}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-white/50 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-all text-[12px] font-medium"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all text-xs font-medium"
           >
             <LogOut className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Sign Out</span>
