@@ -163,26 +163,6 @@ export default function EngineerDashboard() {
           </nav>
         </div>
 
-        {/* Check-in/out CTA */}
-        <div className="px-4 pb-6 pt-4 border-t border-slate-100">
-          {!todayCheckIn ? (
-            <button onClick={checkIn} disabled={sub}
-              className="w-full flex items-center justify-center gap-2 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold text-sm transition-all duration-150 disabled:opacity-50 shadow-md shadow-blue-200 hover:shadow-lg hover:shadow-blue-200 hover:-translate-y-px active:translate-y-0">
-              {sub ? <Clock className="w-4 h-4 animate-spin" /> : <Navigation className="w-4 h-4" />}
-              {sub ? 'Locating...' : 'Start Shift'}
-            </button>
-          ) : !todayCheckIn.checkOutTime ? (
-            <button onClick={checkOut} disabled={sub}
-              className="w-full flex items-center justify-center gap-2 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-semibold text-sm transition-all duration-150 disabled:opacity-50 shadow-md shadow-red-100">
-              {sub ? <Clock className="w-4 h-4 animate-spin" /> : <LogOut className="w-4 h-4" />}
-              {sub ? 'Ending...' : 'End Shift'}
-            </button>
-          ) : (
-            <div className="w-full py-3 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl font-semibold text-sm flex items-center justify-center gap-2">
-              <CheckCircle className="w-4 h-4" /> Shift Complete
-            </div>
-          )}
-        </div>
       </aside>
 
       {/* ─── MAIN ─── */}
@@ -204,6 +184,60 @@ export default function EngineerDashboard() {
         </div>
 
         <div className="flex-1 p-8 space-y-7">
+
+          {/* ── CHECK-IN / CHECK-OUT CARD ── */}
+          <div className={`rounded-2xl border p-5 flex items-center justify-between gap-6 shadow-[0_1px_3px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.04)] ${
+            isActive
+              ? 'bg-gradient-to-r from-emerald-50 to-white border-emerald-100'
+              : isDone
+              ? 'bg-slate-50 border-slate-100'
+              : 'bg-gradient-to-r from-blue-50 to-white border-blue-100'
+          }`}>
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
+                isActive ? 'bg-emerald-100 border border-emerald-200' : isDone ? 'bg-slate-100 border border-slate-200' : 'bg-blue-100 border border-blue-200'
+              }`}>
+                {isActive
+                  ? <Activity className="w-5 h-5 text-emerald-600" />
+                  : isDone
+                  ? <CheckCircle className="w-5 h-5 text-slate-400" />
+                  : <Navigation className="w-5 h-5 text-blue-600" />
+                }
+              </div>
+              <div>
+                <p className={`font-bold text-base tracking-tight ${isActive ? 'text-emerald-700' : isDone ? 'text-slate-500' : 'text-slate-800'}`}>
+                  {isActive ? 'Currently On Duty' : isDone ? 'Shift Complete for Today' : 'Ready to Start Your Shift?'}
+                </p>
+                <p className="text-slate-400 text-xs mt-0.5">
+                  {isActive
+                    ? `Checked in at ${new Date(todayCheckIn!.checkInTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}${todayCheckIn?.locationName ? ` · ${todayCheckIn.locationName.split(',')[0]}` : ''}`
+                    : isDone
+                    ? `Checked out at ${new Date(todayCheckIn!.checkOutTime!).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+                    : today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
+                  }
+                </p>
+              </div>
+            </div>
+            <div className="shrink-0">
+              {!todayCheckIn ? (
+                <button onClick={checkIn} disabled={sub}
+                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 shadow-md shadow-blue-200 hover:shadow-lg hover:shadow-blue-200 hover:-translate-y-px active:translate-y-0">
+                  {sub ? <Clock className="w-4 h-4 animate-spin" /> : <Navigation className="w-4 h-4" />}
+                  {sub ? 'Locating...' : 'Start Shift'}
+                </button>
+              ) : !todayCheckIn.checkOutTime ? (
+                <button onClick={checkOut} disabled={sub}
+                  className="flex items-center gap-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 shadow-md shadow-red-100 hover:shadow-lg hover:shadow-red-100">
+                  {sub ? <Clock className="w-4 h-4 animate-spin" /> : <LogOut className="w-4 h-4" />}
+                  {sub ? 'Ending...' : 'End Shift'}
+                </button>
+              ) : (
+                <div className="flex items-center gap-2 px-5 py-2.5 bg-white border border-emerald-200 text-emerald-600 rounded-xl font-semibold text-sm">
+                  <CheckCircle className="w-4 h-4" /> Done for Today
+                </div>
+              )}
+            </div>
+          </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

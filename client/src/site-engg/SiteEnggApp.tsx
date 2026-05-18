@@ -74,68 +74,53 @@ function AppContent() {
         onProfileClick={() => setShowProfile(true)}
       />
 
-      {/* Floating view toggle */}
+      {/* View / role switcher — pinned top-right, below header, never overlaps content */}
       {(isEngineer || isPrivileged || isClient) && (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-2">
-          <div className="bg-white rounded-2xl border border-slate-200 p-1.5 flex gap-1 shadow-lg shadow-slate-200/80">
+        <div className="fixed top-[3.75rem] right-0 z-40 flex flex-col items-end gap-1 px-3 py-2 bg-white/90 backdrop-blur-md border-b border-l border-slate-100 rounded-bl-2xl shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+          <div className="flex items-center gap-1">
+            <span className="text-[9px] font-bold text-slate-300 uppercase tracking-widest mr-1">View</span>
             <button
               onClick={() => setViewMode('web')}
-              className={`p-2.5 rounded-xl transition-all duration-200 ${
+              title="Web View"
+              className={`p-1.5 rounded-lg transition-all duration-200 ${
                 viewMode === 'web'
                   ? 'bg-slate-900 text-white shadow-sm'
                   : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'
               }`}
-              title="Web View"
             >
-              <Monitor className="w-4 h-4" />
+              <Monitor className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => setViewMode('mobile')}
-              className={`p-2.5 rounded-xl transition-all duration-200 ${
+              title="Mobile View"
+              className={`p-1.5 rounded-lg transition-all duration-200 ${
                 viewMode === 'mobile'
                   ? 'bg-slate-900 text-white shadow-sm'
                   : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'
               }`}
-              title="Mobile View"
             >
-              <Smartphone className="w-4 h-4" />
+              <Smartphone className="w-3.5 h-3.5" />
             </button>
-          </div>
 
-          {isPrivilegedUser && (
-            <div className="bg-white rounded-2xl border border-slate-200 p-1.5 flex flex-col gap-1 shadow-lg shadow-slate-200/80">
-              <div className="flex gap-1">
-                {(['admin', 'hr'] as const).map(role => (
+            {isPrivilegedUser && (
+              <>
+                <div className="w-px h-4 bg-slate-200 mx-1" />
+                {(['admin', 'hr', 'client', 'engineer'] as const).map(role => (
                   <button
                     key={role}
                     onClick={() => setMultiRoleViewMode(role)}
-                    className={`flex-1 py-1.5 px-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-200 ${
+                    className={`py-1 px-2 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all duration-200 ${
                       multiRoleViewMode === role
-                        ? 'bg-slate-900 text-white'
+                        ? 'bg-slate-900 text-white shadow-sm'
                         : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'
                     }`}
                   >
                     {role}
                   </button>
                 ))}
-              </div>
-              <div className="flex gap-1">
-                {(['client', 'engineer'] as const).map(role => (
-                  <button
-                    key={role}
-                    onClick={() => setMultiRoleViewMode(role)}
-                    className={`flex-1 py-1.5 px-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-200 ${
-                      multiRoleViewMode === role
-                        ? 'bg-slate-900 text-white'
-                        : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'
-                    }`}
-                  >
-                    {role}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+              </>
+            )}
+          </div>
         </div>
       )}
 
