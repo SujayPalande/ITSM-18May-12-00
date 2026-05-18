@@ -1,0 +1,22 @@
+
+> rest-express@1.0.0 dev
+> cross-env NODE_ENV=development tsx server/index.ts
+
+[1G[0K[dotenv@17.2.3] injecting env (19) from .env [2m-- tip: ⚙️  suppress all logs with { quiet: true }[0m
+🔗 Connecting to MySQL database: 127.0.0.1:3306/itsm_helpdesk
+Ignoring invalid configuration option passed to Connection: acquireTimeout. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
+Ignoring invalid configuration option passed to Connection: timeout. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
+/home/runner/workspace/server/storage.ts:940
+      pool,
+      ^
+
+
+ReferenceError: pool is not defined
+    at new DatabaseStorage [90m(/home/runner/workspace/[39mserver/storage.ts:940:7[90m)[39m
+    at <anonymous> [90m(/home/runner/workspace/[39mserver/storage.ts:2005:5[90m)[39m
+[90m    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)[39m
+[90m    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)[39m
+[90m    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)[39m
+
+Node.js v20.20.0
+[1G[0K⠙[1G[0K
