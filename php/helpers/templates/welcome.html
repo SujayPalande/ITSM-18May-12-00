@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title>Welcome to ITSM Helpdesk</title>
+    <style>
+        :root {
+            color-scheme: light;
+        }
+        @media (prefers-color-scheme: dark) {
+            .email-bg { background: #ffffff !important; }
+            .email-text { color: #1f2937 !important; }
+        }
+    </style>
+</head>
+<body class="email-bg" style="margin: 0; padding: 0; background-color: #f3f4f6; font-family: Arial, sans-serif;">
+    <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="center" style="padding: 40px 0;">
+                <table role="presentation" width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                    <tr>
+                        <td style="padding: 40px;">
+                            <!-- Header -->
+                            <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="center" style="padding-bottom: 32px;">
+                                        <img src="https://cybaemtech.com/assets/logo.png" alt="ITSM Logo" width="150" style="display: block; margin: 0 auto;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding-bottom: 32px;">
+                                        <h1 class="email-text" style="margin: 0; color: #1f2937; font-size: 24px; font-weight: bold;">Welcome to ITSM Helpdesk! 🎉</h1>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Content -->
+                            <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td class="email-text" style="padding-bottom: 24px; color: #1f2937;">
+                                        Hello {{name}},
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="email-text" style="padding-bottom: 24px; color: #1f2937;">
+                                        Your email has been successfully verified and your account is now active. You can now log in to access all features of the ITSM Helpdesk Portal.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-bottom: 32px;">
+                                        <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; border-radius: 8px; padding: 16px;">
+                                            <tr>
+                                                <td class="email-text" style="color: #1f2937;">
+                                                    <strong>Your Username:</strong> {{username}}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding-bottom: 32px;">
+                                        <table role="presentation" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="center" style="background-color: #4f46e5; border-radius: 8px;">
+                                                    <a href="https://itsm.cybaemtech.app/auth" style="display: inline-block; padding: 16px 32px; color: #ffffff; text-decoration: none; font-weight: bold;">Login to Portal</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-bottom: 32px;">
+                                        <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f1f5f9; border-radius: 8px; padding: 24px;">
+                                            <tr>
+                                                <td>
+                                                    <h3 class="email-text" style="margin: 0 0 16px 0; color: #1f2937; font-size: 16px;">🚀 Getting Started</h3>
+                                                    <ul class="email-text" style="margin: 0; padding-left: 24px; color: #4b5563;">
+                                                        <li style="margin-bottom: 8px;">Update your profile information</li>
+                                                        <li style="margin-bottom: 8px;">Browse the knowledge base for resources</li>
+                                                        <li style="margin-bottom: 8px;">Submit your first support ticket</li>
+                                                        <li style="margin-bottom: 0;">Contact our team if you need help</li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-bottom: 32px;">
+                                        <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #dbeafe; border-radius: 8px; padding: 16px;">
+                                            <tr>
+                                                <td class="email-text" style="color: #1e40af;">
+                                                    <strong style="display: block; margin-bottom: 8px;">💡 Tip:</strong>
+                                                    For the best experience, bookmark the portal URL in your browser for quick access.
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Footer -->
+                            <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top: 1px solid #e5e7eb; padding-top: 32px;">
+                                <tr>
+                                    <td align="center" class="email-text" style="color: #6b7280; font-size: 12px;">
+                                        <p style="margin: 0 0 8px 0;">This is an automated message, please do not reply.</p>
+                                        <p style="margin: 0;">© {{year}} ITSM Helpdesk Portal. All rights reserved.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

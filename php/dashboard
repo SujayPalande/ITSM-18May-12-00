@@ -1,0 +1,12 @@
+<?php
+/**
+ * Dashboard API Wrapper for cPanel Production Environment
+ * Routes /itsm_app/php/dashboard to /itsm_app/php/api/dashboard.php
+ */
+
+// Set request data for the API
+$_REQUEST_DATA = $_REQUEST;
+
+// Include the actual dashboard API
+include_once __DIR__ . '/api/dashboard.php';
+?>

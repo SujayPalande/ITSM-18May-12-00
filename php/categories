@@ -1,0 +1,12 @@
+<?php
+/**
+ * Categories API Wrapper for cPanel Production Environment
+ * Routes /itsm_app/php/categories to /itsm_app/php/api/categories.php
+ */
+
+// Set request data for the API
+$_REQUEST_DATA = $_REQUEST;
+
+// Include the actual categories API
+include_once __DIR__ . '/api/categories.php';
+?>

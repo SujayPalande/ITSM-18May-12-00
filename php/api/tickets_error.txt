@@ -1,0 +1,19 @@
+[22-Apr-2026 12:11:24 Asia/Kolkata] Using direct request data: Array
+(
+)
+
+[22-Apr-2026 12:11:24 Asia/Kolkata] === TICKETS API REQUEST START ===
+[22-Apr-2026 12:11:24 Asia/Kolkata] Method: GET
+[22-Apr-2026 12:11:24 Asia/Kolkata] REQUEST_URI: /php/api/tickets.php?user=my
+[22-Apr-2026 12:11:24 Asia/Kolkata] Path parts: Array
+(
+    [0] => php
+    [1] => api
+    [2] => tickets.php
+)
+
+[22-Apr-2026 12:11:24 Asia/Kolkata] Session ID: 093693b2d3fd7e3f4a8d4b044c5403e2
+[22-Apr-2026 12:11:24 Asia/Kolkata] Session data: Array
+(
+)
+

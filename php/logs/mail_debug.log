@@ -1,0 +1,1344 @@
+[2026-04-03 12:34:21] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server Additional SMTP info: php_network_getaddresses: getaddrinfo for mail.cybaemtech.in failed: This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server
+[2026-04-03 12:34:21] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server Additional SMTP info: php_network_getaddresses: getaddrinfo for mail.cybaemtech.in failed: This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server
+[2026-04-03 12:34:23] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 10:41:19] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server Additional SMTP info: php_network_getaddresses: getaddrinfo for mail.cybaemtech.in failed: This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server
+[2026-04-22 10:41:19] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server Additional SMTP info: php_network_getaddresses: getaddrinfo for mail.cybaemtech.in failed: This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server
+[2026-04-22 10:41:21] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 10:41:33] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server Additional SMTP info: php_network_getaddresses: getaddrinfo for mail.cybaemtech.in failed: This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server
+[2026-04-22 10:41:33] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server Additional SMTP info: php_network_getaddresses: getaddrinfo for mail.cybaemtech.in failed: This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server
+[2026-04-22 10:41:35] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 10:45:34] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 10:45:40] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 10:45:42] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 10:46:54] [ERROR] Transport SMTPS 465 failed: SMTP Error: The following recipients failed: jpalande0702@gmail.com: Temporary local problem - please try later
+
+[2026-04-22 10:47:04] [ERROR] Transport STARTTLS 587 failed: SMTP Error: The following recipients failed: jpalande0702@gmail.com: Temporary local problem - please try later
+
+[2026-04-22 10:47:06] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 10:47:30] [ERROR] Transport SMTPS 465 failed: SMTP Error: The following recipients failed: jpalande0702@gmail.com: Temporary local problem - please try later
+
+[2026-04-22 10:47:40] [ERROR] Transport STARTTLS 587 failed: SMTP Error: The following recipients failed: jpalande0702@gmail.com: Temporary local problem - please try later
+
+[2026-04-22 10:47:42] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 10:53:28] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 10:53:32] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 10:53:34] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:17:24] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:17:27] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:17:29] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:18:39] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:18:43] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:18:45] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:18:48] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:18:51] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:18:53] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:19:53] [3] Connection: opening to ssl://smtp.hostinger.com:465, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:19:53] [3] Connection: opened
+[2026-04-22 11:19:54] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:19:54] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:19:54] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:19:54] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:19:54] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:19:54] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:19:54] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:19:54] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:19:56] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:19:56] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:19:56] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:19:56] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:19:56] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:19:56] [3] Connection: closed
+[2026-04-22 11:19:56] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:19:56] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:19:56] [3] Connection: opening to smtp.hostinger.com:587, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:19:56] [3] Connection: opened
+[2026-04-22 11:19:56] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:19:56] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:19:56] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:19:56] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-22 11:19:56] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-22 11:19:57] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:19:57] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:19:57] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:19:57] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:19:57] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:19:57] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:19:57] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:19:59] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:19:59] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:19:59] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:19:59] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:19:59] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:19:59] [3] Connection: closed
+[2026-04-22 11:19:59] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:19:59] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:20:01] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:20:01] [3] Connection: opening to ssl://smtp.hostinger.com:465, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:20:02] [3] Connection: opened
+[2026-04-22 11:20:02] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:20:02] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:20:02] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:20:02] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:20:02] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:20:02] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:20:02] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:20:02] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:20:04] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:20:04] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:20:04] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:20:04] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:20:04] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:20:04] [3] Connection: closed
+[2026-04-22 11:20:04] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:20:04] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:20:04] [3] Connection: opening to smtp.hostinger.com:587, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:20:04] [3] Connection: opened
+[2026-04-22 11:20:04] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:20:04] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:20:04] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:20:04] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-22 11:20:04] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-22 11:20:05] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:20:05] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:20:05] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:20:05] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:20:05] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:20:05] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:20:05] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:20:07] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:20:07] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:20:07] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:20:07] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:20:07] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:20:07] [3] Connection: closed
+[2026-04-22 11:20:07] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:20:07] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:20:09] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:23:35] [3] Connection: opening to ssl://smtp.hostinger.com:465, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:23:35] [3] Connection: opened
+[2026-04-22 11:23:35] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:23:35] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:23:36] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:23:36] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:23:36] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:23:36] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:23:36] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:23:36] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:23:38] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:23:38] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:23:38] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:23:38] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:23:38] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:23:38] [3] Connection: closed
+[2026-04-22 11:23:38] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:23:38] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:23:38] [3] Connection: opening to smtp.hostinger.com:587, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:23:38] [3] Connection: opened
+[2026-04-22 11:23:39] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:23:39] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:23:39] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:23:39] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-22 11:23:39] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-22 11:23:39] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:23:39] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:23:39] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:23:39] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:23:39] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:23:39] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:23:39] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:23:41] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:23:41] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:23:41] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:23:41] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:23:41] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:23:41] [3] Connection: closed
+[2026-04-22 11:23:41] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:23:41] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:23:43] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:24:02] [3] Connection: opening to ssl://smtp.hostinger.com:465, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:24:02] [3] Connection: opened
+[2026-04-22 11:24:02] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:24:02] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:02] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:02] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:24:03] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:24:03] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:03] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:24:03] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:05] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:05] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:05] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:05] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:24:05] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:24:05] [3] Connection: closed
+[2026-04-22 11:24:05] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:05] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:24:05] [3] Connection: opening to smtp.hostinger.com:587, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:24:05] [3] Connection: opened
+[2026-04-22 11:24:05] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:24:05] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:05] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:05] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-22 11:24:05] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-22 11:24:06] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:06] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:06] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:24:06] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:24:06] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:06] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:24:06] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:08] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:08] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:08] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:08] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:24:08] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:24:08] [3] Connection: closed
+[2026-04-22 11:24:08] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:08] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:24:10] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:24:10] [3] Connection: opening to ssl://smtp.hostinger.com:465, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:24:10] [3] Connection: opened
+[2026-04-22 11:24:10] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:24:10] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:11] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:11] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:24:11] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:24:11] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:11] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:24:11] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:13] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:13] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:13] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:13] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:24:13] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:24:13] [3] Connection: closed
+[2026-04-22 11:24:13] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:13] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:24:13] [3] Connection: opening to smtp.hostinger.com:587, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:24:13] [3] Connection: opened
+[2026-04-22 11:24:13] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:24:13] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:14] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:14] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-22 11:24:14] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-22 11:24:14] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:14] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:14] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:24:14] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:24:14] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:14] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:24:14] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:16] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:16] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:16] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:16] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:24:16] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:24:16] [3] Connection: closed
+[2026-04-22 11:24:16] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:16] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:24:18] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:24:18] [3] Connection: opening to ssl://smtp.hostinger.com:465, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:24:19] [3] Connection: opened
+[2026-04-22 11:24:19] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:24:19] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:19] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:19] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:24:19] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:24:19] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:19] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:24:19] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:21] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:21] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:21] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:21] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:24:21] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:24:21] [3] Connection: closed
+[2026-04-22 11:24:21] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:21] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:24:21] [3] Connection: opening to smtp.hostinger.com:587, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:24:21] [3] Connection: opened
+[2026-04-22 11:24:21] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:24:21] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:21] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:21] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-22 11:24:21] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-22 11:24:21] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:22] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:22] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:24:22] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:24:22] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:22] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:24:22] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:24] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:24] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:24] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:24] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:24:24] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:24:24] [3] Connection: closed
+[2026-04-22 11:24:24] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:24] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:24:26] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:24:26] [3] Connection: opening to ssl://smtp.hostinger.com:465, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:24:26] [3] Connection: opened
+[2026-04-22 11:24:26] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:24:26] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:27] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:27] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:24:27] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:24:27] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:27] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:24:27] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:29] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:29] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:29] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:29] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:24:29] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:24:29] [3] Connection: closed
+[2026-04-22 11:24:29] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:29] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:24:29] [3] Connection: opening to smtp.hostinger.com:587, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:24:29] [3] Connection: opened
+[2026-04-22 11:24:29] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:24:29] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:29] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:29] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-22 11:24:30] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-22 11:24:30] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:30] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:30] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:24:30] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:24:30] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:30] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:24:30] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:32] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:32] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:32] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:32] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:24:32] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:24:32] [3] Connection: closed
+[2026-04-22 11:24:32] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:32] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:24:34] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:24:34] [3] Connection: opening to ssl://smtp.hostinger.com:465, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:24:34] [3] Connection: opened
+[2026-04-22 11:24:34] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:24:34] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:35] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:35] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:24:35] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:24:35] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:35] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:24:35] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:37] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:37] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:37] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:37] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:24:37] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:24:37] [3] Connection: closed
+[2026-04-22 11:24:37] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:37] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:24:37] [3] Connection: opening to smtp.hostinger.com:587, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:24:37] [3] Connection: opened
+[2026-04-22 11:24:37] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:24:37] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:37] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:37] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-22 11:24:38] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-22 11:24:38] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:24:38] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:24:38] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:24:38] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:24:38] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:38] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:24:38] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:24:40] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:40] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:24:40] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:40] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:24:40] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:24:40] [3] Connection: closed
+[2026-04-22 11:24:40] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:24:40] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:24:42] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:26:23] [3] Connection: opening to ssl://smtp.hostinger.com:465, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:26:24] [3] Connection: opened
+[2026-04-22 11:26:24] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:26:24] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:26:24] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:26:24] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:26:24] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:26:24] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:26:24] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:26:24] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:26:27] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:26:27] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:26:27] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:26:27] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:26:27] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:26:27] [3] Connection: closed
+[2026-04-22 11:26:27] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:26:27] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:26:27] [3] Connection: opening to smtp.hostinger.com:587, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:26:27] [3] Connection: opened
+[2026-04-22 11:26:27] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-22 11:26:27] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:26:27] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:26:27] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-22 11:26:27] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-22 11:26:28] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:26:28] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-22 11:26:28] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:26:28] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:26:28] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:26:28] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:26:28] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:26:30] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:26:30] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-22 11:26:30] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:26:30] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:26:30] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:26:30] [3] Connection: closed
+[2026-04-22 11:26:30] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:26:30] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:26:32] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-22 11:26:59] [3] Connection: opening to ssl://smtp.titan.email:465, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:27:00] [3] Connection: opened
+[2026-04-22 11:27:00] [2] SERVER -> CLIENT: 220 smtp-out.flockmail.com ESMTP Postfix
+
+[2026-04-22 11:27:00] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:27:00] [2] SERVER -> CLIENT: 250-smtp-out.flockmail.com
+250-PIPELINING
+250-SIZE 52428800
+250-VRFY
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250 CHUNKING
+
+[2026-04-22 11:27:00] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:27:00] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:27:00] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:27:01] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:27:01] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:27:03] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: UGFzc3dvcmQ6
+
+[2026-04-22 11:27:03] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: UGFzc3dvcmQ6
+
+[2026-04-22 11:27:03] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:27:03] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:27:03] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:27:03] [3] Connection: closed
+[2026-04-22 11:27:03] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:27:03] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:27:03] [3] Connection: opening to smtp.titan.email:587, timeout=300, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-22 11:27:03] [3] Connection: opened
+[2026-04-22 11:27:03] [2] SERVER -> CLIENT: 220 smtp-out.flockmail.com ESMTP Postfix
+
+[2026-04-22 11:27:03] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:27:04] [2] SERVER -> CLIENT: 250-smtp-out.flockmail.com
+250-PIPELINING
+250-SIZE 52428800
+250-VRFY
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250 CHUNKING
+
+[2026-04-22 11:27:04] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-22 11:27:04] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-22 11:27:04] [1] CLIENT -> SERVER: EHLO web-app-instanc
+
+[2026-04-22 11:27:05] [2] SERVER -> CLIENT: 250-smtp-out.flockmail.com
+250-PIPELINING
+250-SIZE 52428800
+250-VRFY
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250 CHUNKING
+
+[2026-04-22 11:27:05] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-22 11:27:05] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-22 11:27:05] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:27:05] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-22 11:27:05] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-22 11:27:07] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: UGFzc3dvcmQ6
+
+[2026-04-22 11:27:07] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: UGFzc3dvcmQ6
+
+[2026-04-22 11:27:07] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:27:07] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-22 11:27:07] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-22 11:27:07] [3] Connection: closed
+[2026-04-22 11:27:07] [3] SMTP Error: Could not authenticate.
+[2026-04-22 11:27:07] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-22 11:27:09] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-04-29 17:44:27] [3] Connection: opening to ssl://smtp.hostinger.com:465, timeout=5, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-29 17:44:27] [3] Connection: opened
+[2026-04-29 17:44:27] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-29 17:44:27] [1] CLIENT -> SERVER: EHLO itsm.cybaemtech.app
+
+[2026-04-29 17:44:27] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-29 17:44:27] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-29 17:44:27] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-29 17:44:27] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-29 17:44:28] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-29 17:44:28] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-29 17:44:30] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-29 17:44:30] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-29 17:44:30] [3] SMTP Error: Could not authenticate.
+[2026-04-29 17:44:30] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-29 17:44:30] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-29 17:44:30] [3] Connection: closed
+[2026-04-29 17:44:30] [3] SMTP Error: Could not authenticate.
+[2026-04-29 17:44:30] [ERROR] Transport SMTPS 465 failed: SMTP Error: Could not authenticate.
+[2026-04-29 17:44:30] [3] Connection: opening to smtp.hostinger.com:587, timeout=5, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-04-29 17:44:30] [3] Connection: opened
+[2026-04-29 17:44:31] [2] SERVER -> CLIENT: 220 ESMTP smtp.hostinger.com
+
+[2026-04-29 17:44:31] [1] CLIENT -> SERVER: EHLO itsm.cybaemtech.app
+
+[2026-04-29 17:44:31] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-STARTTLS
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-29 17:44:31] [1] CLIENT -> SERVER: STARTTLS
+
+[2026-04-29 17:44:31] [2] SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+[2026-04-29 17:44:31] [1] CLIENT -> SERVER: EHLO itsm.cybaemtech.app
+
+[2026-04-29 17:44:32] [2] SERVER -> CLIENT: 250-smtp.hostinger.com
+250-PIPELINING
+250-SIZE 48811212
+250-ETRN
+250-AUTH PLAIN LOGIN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250-DSN
+250 CHUNKING
+
+[2026-04-29 17:44:32] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-04-29 17:44:32] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-04-29 17:44:32] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-29 17:44:32] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-04-29 17:44:32] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-04-29 17:44:34] [2] SERVER -> CLIENT: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-29 17:44:34] [1] SMTP ERROR: Password command failed: 535 5.7.8 Error: authentication failed: (reason unavailable)
+
+[2026-04-29 17:44:34] [3] SMTP Error: Could not authenticate.
+[2026-04-29 17:44:34] [1] CLIENT -> SERVER: QUIT
+
+[2026-04-29 17:44:34] [2] SERVER -> CLIENT: 221 2.0.0 Bye
+
+[2026-04-29 17:44:34] [3] Connection: closed
+[2026-04-29 17:44:34] [3] SMTP Error: Could not authenticate.
+[2026-04-29 17:44:34] [ERROR] Transport STARTTLS 587 failed: SMTP Error: Could not authenticate.
+[2026-04-29 17:44:36] [ERROR] mail() transport failed: Could not instantiate mail function.
+[2026-05-05 12:06:21] [3] Connection: opening to ssl://mail.cybaemtech.com:465, timeout=5, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-05-05 12:06:21] [3] Connection: opened
+[2026-05-05 12:06:21] [2] SERVER -> CLIENT: 220-srv.cybaemtech.com ESMTP Exim 4.99.2 #2 Tue, 05 May 2026 12:06:21 +0530 
+220-We do not authorize the use of this system to transport unsolicited, 
+220 and/or bulk e-mail.
+
+[2026-05-05 12:06:21] [1] CLIENT -> SERVER: EHLO itsm.cybaemtech.app
+
+[2026-05-05 12:06:21] [2] SERVER -> CLIENT: 250-srv.cybaemtech.com Hello itsm.cybaemtech.app [103.48.43.109]
+250-SIZE 52428800
+250-LIMITS MAILMAX=1000 RCPTMAX=50000
+250-8BITMIME
+250-PIPELINING
+250-PIPECONNECT
+250-AUTH PLAIN LOGIN
+250 HELP
+
+[2026-05-05 12:06:21] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-05-05 12:06:21] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-05-05 12:06:21] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-05-05 12:06:21] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-05-05 12:06:21] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-05-05 12:06:21] [2] SERVER -> CLIENT: 235 Authentication succeeded
+
+[2026-05-05 12:06:21] [1] CLIENT -> SERVER: MAIL FROM:<support@cybaemtech.com>
+
+[2026-05-05 12:06:21] [2] SERVER -> CLIENT: 250 OK
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: RCPT TO:<support@cybaemtech.com>
+
+[2026-05-05 12:06:22] [2] SERVER -> CLIENT: 250 Accepted
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: DATA
+
+[2026-05-05 12:06:22] [2] SERVER -> CLIENT: 354 Enter message, ending with "." on a line by itself
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: Date: Tue, 5 May 2026 12:06:21 +0530
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: To: Admin <support@cybaemtech.com>
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: From: "\"ITSM Helpdesk Support\"" <support@cybaemtech.com>
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: Subject: SMTP Test - ITSM Helpdesk Activation
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: Message-ID: <GC1eMHRX2Bkemws1rJZzpElTrFtQsJQ35ZNDMHewzvs@itsm.cybaemtech.app>
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: X-Mailer: PHPMailer 7.0.0 (https://github.com/PHPMailer/PHPMailer)
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: List-Unsubscribe: <mailto:support@cybaemtech.com>
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: Precedence: bulk
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: MIME-Version: 1.0
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: 
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: <h1>SMTP Test Successful!</h1><p>Your ITSM mail integration is now active using support@cybaemtech.com.</p>
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: 
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: .
+
+[2026-05-05 12:06:22] [2] SERVER -> CLIENT: 250 OK id=1wK9OI-00000003TiA-2rHn
+
+[2026-05-05 12:06:22] [1] CLIENT -> SERVER: QUIT
+
+[2026-05-05 12:06:22] [2] SERVER -> CLIENT: 221 srv.cybaemtech.com closing connection
+
+[2026-05-05 12:06:22] [3] Connection: closed
+[2026-05-05 20:17:39] [3] Connection: opening to ssl://mail.cybaemtech.com:465, timeout=5, options=array (
+  'ssl' => 
+  array (
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true,
+  ),
+)
+[2026-05-05 20:17:39] [3] Connection: opened
+[2026-05-05 20:17:39] [2] SERVER -> CLIENT: 220-srv.cybaemtech.com ESMTP Exim 4.99.2 #2 Tue, 05 May 2026 20:17:39 +0530 
+220-We do not authorize the use of this system to transport unsolicited, 
+220 and/or bulk e-mail.
+
+[2026-05-05 20:17:39] [1] CLIENT -> SERVER: EHLO itsm.cybaemtech.app
+
+[2026-05-05 20:17:39] [2] SERVER -> CLIENT: 250-srv.cybaemtech.com Hello itsm.cybaemtech.app [103.48.43.109]
+250-SIZE 52428800
+250-LIMITS MAILMAX=1000 RCPTMAX=50000
+250-8BITMIME
+250-PIPELINING
+250-PIPECONNECT
+250-AUTH PLAIN LOGIN
+250 HELP
+
+[2026-05-05 20:17:39] [1] CLIENT -> SERVER: AUTH LOGIN
+
+[2026-05-05 20:17:39] [2] SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+[2026-05-05 20:17:39] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-05-05 20:17:39] [2] SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+[2026-05-05 20:17:39] [1] CLIENT -> SERVER: [credentials hidden]
+[2026-05-05 20:17:39] [2] SERVER -> CLIENT: 235 Authentication succeeded
+
+[2026-05-05 20:17:39] [1] CLIENT -> SERVER: MAIL FROM:<support@cybaemtech.com>
+
+[2026-05-05 20:17:39] [2] SERVER -> CLIENT: 250 OK
+
+[2026-05-05 20:17:39] [1] CLIENT -> SERVER: RCPT TO:<support@cybaemtech.com>
+
+[2026-05-05 20:17:40] [2] SERVER -> CLIENT: 250 Accepted
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: DATA
+
+[2026-05-05 20:17:40] [2] SERVER -> CLIENT: 354 Enter message, ending with "." on a line by itself
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: Date: Tue, 5 May 2026 20:17:39 +0530
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: To: Admin Test <support@cybaemtech.com>
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: From: "\"ITSM Helpdesk Support\"" <support@cybaemtech.com>
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: Subject: SMTP Verification Update
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: Message-ID: <DTUVd1ZolRpZmB5juZ58sqqDXxEhZ6o9jicfvhH3cM@itsm.cybaemtech.app>
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: X-Mailer: PHPMailer 7.0.0 (https://github.com/PHPMailer/PHPMailer)
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: List-Unsubscribe: <mailto:support@cybaemtech.com>
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: Precedence: bulk
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: MIME-Version: 1.0
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: Content-Type: text/html; charset=UTF-8
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: 
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: <h1>System Test</h1><p>This is a test of the updated .env loader in the ITSM Portal.</p>
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: 
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: .
+
+[2026-05-05 20:17:40] [2] SERVER -> CLIENT: 250 OK id=1wKH3k-00000003xxu-2DZc
+
+[2026-05-05 20:17:40] [1] CLIENT -> SERVER: QUIT
+
+[2026-05-05 20:17:40] [2] SERVER -> CLIENT: 221 srv.cybaemtech.com closing connection
+
+[2026-05-05 20:17:40] [3] Connection: closed
+[2026-05-07 14:27:40] [INFO] Email successfully sent to: support@cybaemtech.com (Subject: SMTP Diagnostics) using Preferred (465)
+[2026-05-11 17:32:02] [INFO] Email successfully sent to: sujay.palande@cybaemtech.com (Subject: ITSM Test Email - SSL Diagnostic) using Preferred (465)
+[2026-05-11 18:12:12] [INFO] Email successfully sent to: sujaypalande24022001@gmail.com (Subject: ITSM Portal - New Ticket Created: #999 - Sample Test Ticket) using Preferred (465)

@@ -1,0 +1,9 @@
+[2026-05-11 12:03:45] ----- WEBHOOK HIT START -----
+URL: unknown
+CLIENT_IP: unknown
+METHOD: 
+REQS: []
+RAW: 
+ERROR: Payload missing 'email'
+WEBHOOK HIT END
+--------------------------------------------

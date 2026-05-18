@@ -1,0 +1,12 @@
+<?php
+/**
+ * Tickets API Wrapper for cPanel Production Environment
+ * Routes /itsm_app/php/tickets to /itsm_app/php/api/tickets.php
+ */
+
+// Set request data for the API
+$_REQUEST_DATA = $_REQUEST;
+
+// Include the actual tickets API
+include_once __DIR__ . '/api/tickets.php';
+?>

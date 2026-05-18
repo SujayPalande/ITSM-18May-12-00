@@ -1,0 +1,70 @@
+RewriteEngine On
+
+# Remove duplicate itsm_app paths - comprehensive fix
+# Handle any number of repeated /itsm_app/ segments
+RewriteCond %{THE_REQUEST} \s/+(itsm_app/){2,}
+RewriteRule ^(itsm_app/)+itsm_app/(.*)$ /itsm_app/$2 [R=301,L]
+
+# Also handle the specific case in the request
+RewriteCond %{REQUEST_URI} ^/itsm_app/itsm_app/
+RewriteRule ^itsm_app/itsm_app/(.*)$ /itsm_app/$1 [R=301,L]
+
+# Handle CORS preflight OPTIONS requests
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# API routes to PHP
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.+)$ php/api/$1.php [QSA,L]
+
+# Frontend fallback for React Router - serve index.html for all non-file requests
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/php/
+RewriteCond %{REQUEST_URI} !^/uploads/
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^(.*)$ index.html [QSA,L]
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # CORS Headers for API requests
+    SetEnvIf Origin "^https?://(www\.)?(cybaemtech\.net|localhost)(:5173)?$" ORIGIN_SUB_DOMAIN=$1$2$3
+    Header always set Access-Control-Allow-Origin "%{ORIGIN_SUB_DOMAIN}e" env=ORIGIN_SUB_DOMAIN
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+    Header always set Access-Control-Allow-Credentials "true"
+    Header always set Vary "Origin"
+</IfModule>
+
+# PHP Settings for cPanel
+<IfModule mod_php7.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value error_log error_log
+    php_value session.cookie_httponly 1
+    php_value session.cookie_secure 1
+    php_value session.use_strict_mode 1
+</IfModule>
+
+# File Security
+<Files "*.php">
+    Order allow,deny
+    Allow from all
+</Files>
+
+<Files ".htaccess">
+    Order deny,allow
+    Deny from all
+</Files>
+
+# Prevent access to sensitive files
+<FilesMatch "\.(sql|log|conf|env)$">
+    Order deny,allow
+    Deny from all
+</FilesMatch>

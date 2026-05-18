@@ -1,0 +1,12 @@
+<?php
+/**
+ * Login API Wrapper for cPanel Production Environment
+ * Routes /itsm_app/php/login to /itsm_app/php/api/login.php
+ */
+
+// Set request data for the API
+$_REQUEST_DATA = $_REQUEST;
+
+// Include the actual login API
+include_once __DIR__ . '/api/login.php';
+?>

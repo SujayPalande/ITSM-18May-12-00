@@ -1,0 +1,8 @@
+{
+    "name": "cybaemtech/itsm-portal",
+    "description": "IT Service Management Portal",
+    "require": {
+        "php": ">=7.4",
+        "phpmailer/phpmailer": "^7.0"
+    }
+}
