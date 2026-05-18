@@ -13,7 +13,7 @@ import { db } from "./db";
 import { eq, and, or, desc, sql, inArray, lt } from "drizzle-orm";
 import connectPg from "connect-pg-simple";
 import createMemoryStore from "memorystore";
-import { pool } from "./db";
+import { connection } from "./db";
 
 const PostgresSessionStore = connectPg(session);
 const MemoryStore = createMemoryStore(session);
@@ -936,28 +936,13 @@ export class DatabaseStorage implements IStorage {
   sessionStore: session.Store;
 
   constructor() {
-    this.sessionStore = new PostgresSessionStore({
-      pool,
-      createTableIfMissing: true,
+    this.sessionStore = new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
     });
     this.initializeData();
   }
 
   private async initializeData() {
-    // Ensure admin user (id=1) exists before seeding domains that reference it
-    const adminUser = await this.getUser(1);
-    let adminId = adminUser?.id;
-
-    if (!adminId) {
-      // Admin user not yet created - domain seeding will be triggered by setupAuth after users are seeded
-      console.log("Admin user not yet created, skipping domain seeding (will retry after user setup).");
-      return;
-    }
-
-    await this.seedDomains(adminId);
-  }
-
-  async seedDomains(adminId: number) {
     const companies = [
       { name: "Creativve Constructiions", domain: "@creativveconstructiions.com" },
       { name: "Denasa Buildcon", domain: "@denasaindia.com" },
@@ -985,7 +970,7 @@ export class DatabaseStorage implements IStorage {
             companyName: company.name,
             description: "Initial seed data",
             isActive: true,
-            createdById: adminId
+            createdById: 1 // System/Admin user
           });
           console.log(`Seeded domain: ${company.domain} for ${company.name}`);
         } else {
@@ -1025,7 +1010,9 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const [user] = await db.insert(users).values(insertUser).returning();
+    const result = await db.insert(users).values(insertUser);
+    const insertId = result[0].insertId;
+    const user = await this.getUser(Number(insertId));
     if (!user) throw new Error('Failed to create user');
     return user;
   }
@@ -1058,7 +1045,9 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createCategory(insertCategory: InsertCategory): Promise<Category> {
-    const [category] = await db.insert(categories).values(insertCategory).returning();
+    const result = await db.insert(categories).values(insertCategory);
+    const insertId = result[0].insertId;
+    const category = await this.getCategory(Number(insertId));
     if (!category) throw new Error('Failed to create category');
     return category;
   }
@@ -1144,7 +1133,7 @@ export class DatabaseStorage implements IStorage {
 
   async createTicket(insertTicket: InsertTicket): Promise<Ticket> {
     try {
-      const [ticket] = await db.insert(tickets).values({
+      const result = await db.insert(tickets).values({
         title: insertTicket.title,
         description: insertTicket.description,
         status: insertTicket.status || 'open',
@@ -1165,7 +1154,9 @@ export class DatabaseStorage implements IStorage {
         attachmentName: insertTicket.attachmentName || null,
         createdAt: new Date(),
         updatedAt: new Date()
-      }).returning();
+      });
+      const insertId = result[0].insertId;
+      const ticket = await this.getTicket(Number(insertId));
       if (!ticket) throw new Error('Failed to create ticket');
       return ticket;
     } catch (error) {
@@ -1538,10 +1529,12 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createComment(insertComment: InsertComment): Promise<Comment> {
-    const [comment] = await db.insert(comments).values({
+    const result = await db.insert(comments).values({
       ...insertComment,
       createdAt: new Date()
-    }).returning();
+    });
+    const insertId = result[0].insertId;
+    const comment = await this.getComment(Number(insertId));
     if (!comment) throw new Error('Failed to create comment');
     return comment;
   }
@@ -1561,12 +1554,14 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createFaq(insertFaq: InsertFaq): Promise<Faq> {
-    const [faq] = await db.insert(faqs).values({
+    const result = await db.insert(faqs).values({
       ...insertFaq,
       viewCount: 0,
       createdAt: new Date(),
       updatedAt: new Date()
-    }).returning();
+    });
+    const insertId = result[0].insertId;
+    const faq = await this.getFaq(Number(insertId));
     if (!faq) throw new Error('Failed to create FAQ');
     return faq;
   }
@@ -1587,10 +1582,12 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createChatMessage(insertMessage: InsertChatMessage): Promise<ChatMessage> {
-    const [message] = await db.insert(chatMessages).values({
+    const result = await db.insert(chatMessages).values({
       ...insertMessage,
       createdAt: new Date()
-    }).returning();
+    });
+    const insertId = result[0].insertId;
+    const [message] = await db.select().from(chatMessages).where(eq(chatMessages.id, Number(insertId)));
     if (!message) throw new Error('Failed to create chat message');
     return message;
   }
@@ -1606,7 +1603,7 @@ export class DatabaseStorage implements IStorage {
         or(
           sql`LOWER(${tickets.title}) LIKE ${`%${searchTerm}%`}`,
           sql`LOWER(${tickets.description}) LIKE ${`%${searchTerm}%`}`,
-          sql`('TKT-' || LPAD(${tickets.id}::text, 4, '0')) LIKE ${`%${searchTerm}%`}`
+          sql`CONCAT('TKT-', LPAD(${tickets.id}, 4, '0')) LIKE ${`%${searchTerm}%`}`
         )
       );
     }
@@ -1961,10 +1958,12 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createAllowedDomain(insertDomain: InsertAllowedDomain): Promise<AllowedDomain> {
-    const [domain] = await db.insert(allowedDomains).values({
+    const result = await db.insert(allowedDomains).values({
       ...insertDomain,
       createdAt: new Date()
-    }).returning();
+    });
+    const insertId = result[0].insertId;
+    const [domain] = await db.select().from(allowedDomains).where(eq(allowedDomains.id, Number(insertId)));
     if (!domain) throw new Error('Failed to create allowed domain');
     return domain;
   }
@@ -1999,7 +1998,9 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-// Always use DatabaseStorage - Replit provides PostgreSQL via DATABASE_URL
-export const storage = process.env.USE_MEMSTORE === 'true'
+// Choose storage implementation based on environment. In development or when
+// USE_MEMSTORE=true is set, prefer the in-memory store to avoid requiring a
+// live DB (useful for local dev and CI). Production will use DatabaseStorage.
+export const storage = (process.env.USE_MEMSTORE === 'true' || process.env.NODE_ENV === 'development')
   ? new MemStorage()
   : new DatabaseStorage();

@@ -1,10 +1,10 @@
-import { pgTable, text, integer, boolean, timestamp, json, serial } from "drizzle-orm/pg-core";
+import { mysqlTable, text, int, boolean, timestamp, json } from "drizzle-orm/mysql-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 // User table with role-based access control
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
+export const users = mysqlTable("users", {
+  id: int("id").primaryKey().autoincrement(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   name: text("name").notNull(),
@@ -19,15 +19,15 @@ export const users = pgTable("users", {
 });
 
 // Categories for tickets
-export const categories = pgTable("categories", {
-  id: serial("id").primaryKey(),
+export const categories = mysqlTable("categories", {
+  id: int("id").primaryKey().autoincrement(),
   name: text("name").notNull(),
-  parentId: integer("parent_id"),
+  parentId: int("parent_id"),
 });
 
 // Tickets table
-export const tickets = pgTable("tickets", {
-  id: serial("id").primaryKey(),
+export const tickets = mysqlTable("tickets", {
+  id: int("id").primaryKey().autoincrement(),
   title: text("title").notNull(),
   description: text("description").notNull(),
   status: text("status").notNull().default("open"), // "open", "in-progress", "resolved", "closed"
@@ -39,10 +39,10 @@ export const tickets = pgTable("tickets", {
   contactDepartment: text("contact_department"), // Department for contact
   companyName: text("company_name").notNull(), // Company name associated with ticket (mandatory)
   location: text("location").notNull(), // Location associated with ticket (mandatory)
-  categoryId: integer("category_id").references(() => categories.id).notNull(),
-  subcategoryId: integer("subcategory_id").references(() => categories.id),
-  createdById: integer("created_by_id").references(() => users.id).notNull(),
-  assignedToId: integer("assigned_to_id").references(() => users.id),
+  categoryId: int("category_id").references(() => categories.id).notNull(),
+  subcategoryId: int("subcategory_id").references(() => categories.id),
+  createdById: int("created_by_id").references(() => users.id).notNull(),
+  assignedToId: int("assigned_to_id").references(() => users.id),
   dueDate: timestamp("due_date"), // Adding due date for reports filtering
   attachmentUrl: text("attachment_url"), // File attachment URL
   attachmentName: text("attachment_name"), // Original file name
@@ -51,43 +51,43 @@ export const tickets = pgTable("tickets", {
 });
 
 // Comments on tickets
-export const comments = pgTable("comments", {
-  id: serial("id").primaryKey(),
-  ticketId: integer("ticket_id").references(() => tickets.id).notNull(),
-  userId: integer("user_id").references(() => users.id).notNull(),
+export const comments = mysqlTable("comments", {
+  id: int("id").primaryKey().autoincrement(),
+  ticketId: int("ticket_id").references(() => tickets.id).notNull(),
+  userId: int("user_id").references(() => users.id).notNull(),
   content: text("content").notNull(),
   isInternal: boolean("is_internal").default(false),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
 // FAQs for knowledge base
-export const faqs = pgTable("faqs", {
-  id: serial("id").primaryKey(),
+export const faqs = mysqlTable("faqs", {
+  id: int("id").primaryKey().autoincrement(),
   question: text("question").notNull(),
   answer: text("answer").notNull(),
-  categoryId: integer("category_id").references(() => categories.id),
-  viewCount: integer("view_count").default(0),
+  categoryId: int("category_id").references(() => categories.id),
+  viewCount: int("view_count").default(0),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 // Chatbot messages for persistent chat history
-export const chatMessages = pgTable("chat_messages", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id).notNull(),
+export const chatMessages = mysqlTable("chat_messages", {
+  id: int("id").primaryKey().autoincrement(),
+  userId: int("user_id").references(() => users.id).notNull(),
   message: text("message").notNull(),
   isFromBot: boolean("is_from_bot").default(false),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
 // Allowed domains for registration restriction
-export const allowedDomains = pgTable("allowed_domains", {
-  id: serial("id").primaryKey(),
+export const allowedDomains = mysqlTable("allowed_domains", {
+  id: int("id").primaryKey().autoincrement(),
   domain: text("domain").notNull().unique(),
   companyName: text("company_name").notNull(),
   description: text("description"),
   isActive: boolean("is_active").default(true),
-  createdById: integer("created_by_id").references(() => users.id).notNull(),
+  createdById: int("created_by_id").references(() => users.id).notNull(),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -95,8 +95,8 @@ export const allowedDomains = pgTable("allowed_domains", {
 // User Journey Documentation System Tables
 
 // User Journey Templates/Types
-export const journeyTemplates = pgTable("journey_templates", {
-  id: serial("id").primaryKey(),
+export const journeyTemplates = mysqlTable("journey_templates", {
+  id: int("id").primaryKey().autoincrement(),
   name: text("name").notNull(),
   description: text("description").notNull(),
   type: text("type").notNull(), // "onboarding", "feature-workflow", "error-recovery", "admin", "returning-user"
@@ -107,9 +107,9 @@ export const journeyTemplates = pgTable("journey_templates", {
 });
 
 // User Journeys (instances of templates)
-export const userJourneys = pgTable("user_journeys", {
-  id: serial("id").primaryKey(),
-  templateId: integer("template_id").references(() => journeyTemplates.id),
+export const userJourneys = mysqlTable("user_journeys", {
+  id: int("id").primaryKey().autoincrement(),
+  templateId: int("template_id").references(() => journeyTemplates.id),
   title: text("title").notNull(),
   description: text("description"),
   version: text("version").default("1.0"),
@@ -120,17 +120,17 @@ export const userJourneys = pgTable("user_journeys", {
   successCriteria: text("success_criteria"),
   painPoints: text("pain_points"),
   improvementNotes: text("improvement_notes"),
-  createdById: integer("created_by_id").references(() => users.id).notNull(),
-  lastUpdatedById: integer("last_updated_by_id").references(() => users.id),
+  createdById: int("created_by_id").references(() => users.id).notNull(),
+  lastUpdatedById: int("last_updated_by_id").references(() => users.id),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 // Journey Steps (the actual workflow steps)
-export const journeySteps = pgTable("journey_steps", {
-  id: serial("id").primaryKey(),
-  journeyId: integer("journey_id").references(() => userJourneys.id).notNull(),
-  stepNumber: integer("step_number").notNull(),
+export const journeySteps = mysqlTable("journey_steps", {
+  id: int("id").primaryKey().autoincrement(),
+  journeyId: int("journey_id").references(() => userJourneys.id).notNull(),
+  stepNumber: int("step_number").notNull(),
   title: text("title").notNull(),
   description: text("description"),
   userActions: json("user_actions").$type<string[]>().default([]), // Array of required user actions
@@ -146,11 +146,11 @@ export const journeySteps = pgTable("journey_steps", {
 });
 
 // Comments and collaboration on journeys
-export const journeyComments = pgTable("journey_comments", {
-  id: serial("id").primaryKey(),
-  journeyId: integer("journey_id").references(() => userJourneys.id),
-  stepId: integer("step_id").references(() => journeySteps.id), // Optional: comment on specific step
-  userId: integer("user_id").references(() => users.id).notNull(),
+export const journeyComments = mysqlTable("journey_comments", {
+  id: int("id").primaryKey().autoincrement(),
+  journeyId: int("journey_id").references(() => userJourneys.id),
+  stepId: int("step_id").references(() => journeySteps.id), // Optional: comment on specific step
+  userId: int("user_id").references(() => users.id).notNull(),
   content: text("content").notNull(),
   type: text("type").default("comment"), // "comment", "suggestion", "issue"
   isResolved: boolean("is_resolved").default(false),
@@ -158,14 +158,14 @@ export const journeyComments = pgTable("journey_comments", {
 });
 
 // Journey exports/shares
-export const journeyExports = pgTable("journey_exports", {
-  id: serial("id").primaryKey(),
-  journeyId: integer("journey_id").references(() => userJourneys.id).notNull(),
+export const journeyExports = mysqlTable("journey_exports", {
+  id: int("id").primaryKey().autoincrement(),
+  journeyId: int("journey_id").references(() => userJourneys.id).notNull(),
   exportType: text("export_type").notNull(), // "pdf", "markdown", "share-link"
   exportData: json("export_data").$type<any>().default({}), // Metadata about the export
   shareToken: text("share_token"), // For shareable links
   expiresAt: timestamp("expires_at"), // For shareable links
-  createdById: integer("created_by_id").references(() => users.id).notNull(),
+  createdById: int("created_by_id").references(() => users.id).notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

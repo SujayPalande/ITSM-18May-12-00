@@ -68,25 +68,17 @@ export async function setupAuth(app: Express) {
       role: "admin" // Assuming admin role for access
     }
   ];
-  let adminUserId: number | undefined;
   for (const demo of demoUsers) {
     const existing = await storage.getUserByUsername(demo.username);
     if (!existing) {
       console.log(`[Seed] Creating user: ${demo.username} (${demo.email})`);
       const created = await storage.createUser(demo);
       console.log(`[Seed] Created user with ID: ${created.id}`);
-      if (demo.role === 'admin' && !adminUserId) adminUserId = created.id;
     } else {
       console.log(`[Seed] Updating user: ${demo.username} (${demo.email})`);
       // Always update password to correct hash
       await storage.updateUser(existing.id, { password: demo.password });
-      if (demo.role === 'admin' && !adminUserId) adminUserId = existing.id;
     }
-  }
-
-  // Seed domains after users exist
-  if (adminUserId && 'seedDomains' in storage) {
-    await (storage as any).seedDomains(adminUserId);
   }
 
   const sessionSecret = process.env.SESSION_SECRET || "helpdesk-portal-secret";
