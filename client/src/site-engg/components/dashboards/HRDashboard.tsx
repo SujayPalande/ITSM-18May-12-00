@@ -492,8 +492,8 @@ export default function HRDashboard() {
                       <div key={i} className="bg-white rounded-2xl p-5 border border-slate-100 hover:border-slate-200 transition-all">
                         <p className="font-semibold text-slate-800 text-sm mb-3">{s.engineerName}</p>
                         <div className="grid grid-cols-3 gap-3 text-center">
-                          <div><p className="text-lg font-bold text-slate-800">{s.daysPresent}</p><p className="text-slate-400 text-[10px] uppercase tracking-wide">Present</p></div>
-                          <div><p className="text-lg font-bold text-slate-800">{s.daysAbsent}</p><p className="text-slate-400 text-[10px] uppercase tracking-wide">Absent</p></div>
+                          <div><p className="text-lg font-bold text-slate-800">{s.presentDays}</p><p className="text-slate-400 text-[10px] uppercase tracking-wide">Present</p></div>
+                          <div><p className="text-lg font-bold text-slate-800">{s.absentDays}</p><p className="text-slate-400 text-[10px] uppercase tracking-wide">Absent</p></div>
                           <div><p className="text-lg font-bold text-slate-800">{s.totalHours?.toFixed(0)}h</p><p className="text-slate-400 text-[10px] uppercase tracking-wide">Hours</p></div>
                         </div>
                       </div>
@@ -511,8 +511,8 @@ export default function HRDashboard() {
                       <div key={i} className="bg-white rounded-2xl p-5 border border-slate-100">
                         <p className="font-semibold text-slate-800 text-sm mb-2">{r.clientName}</p>
                         <div className="flex gap-6 text-sm text-slate-500">
-                          <span><span className="text-slate-800 font-bold">{r.reportCount}</span> reports</span>
-                          <span><span className="text-slate-800 font-bold">{r.engineerCount}</span> engineers</span>
+                          <span><span className="text-slate-800 font-bold">{r.totalReports}</span> reports</span>
+                          <span><span className="text-slate-800 font-bold">{r.activeEngineers}</span> engineers</span>
                         </div>
                       </div>
                     ))}
@@ -528,7 +528,7 @@ export default function HRDashboard() {
                     <table className="w-full">
                       <thead>
                         <tr className="bg-slate-50 border-b border-slate-100">
-                          {['Engineer','Days Present','Leaves','Total Hours','Salary'].map(h => (
+                          {['Engineer','Days Present','Leaves','Total Hours','Overtime'].map(h => (
                             <th key={h} className="px-5 py-3.5 text-left text-[10px] font-bold text-slate-400 uppercase tracking-widest">{h}</th>
                           ))}
                         </tr>
@@ -537,10 +537,10 @@ export default function HRDashboard() {
                         {payrollData.map((p, i) => (
                           <tr key={i} className="hover:bg-slate-50/60 transition-colors">
                             <td className="px-5 py-4 font-semibold text-slate-800 text-sm">{p.engineerName}</td>
-                            <td className="px-5 py-4 text-slate-600 text-sm">{p.daysPresent}</td>
+                            <td className="px-5 py-4 text-slate-600 text-sm">{p.workingDays}</td>
                             <td className="px-5 py-4 text-slate-500 text-sm">{p.leaveDays}</td>
                             <td className="px-5 py-4 text-slate-500 text-sm">{p.totalHours?.toFixed(0)}h</td>
-                            <td className="px-5 py-4 font-semibold text-emerald-600 text-sm">₹{p.salary?.toLocaleString()}</td>
+                            <td className="px-5 py-4 text-slate-500 text-sm">{p.overtimeHours?.toFixed(1)}h OT</td>
                           </tr>
                         ))}
                         {payrollData.length === 0 && <tr><td colSpan={5} className="py-12 text-center text-slate-400 text-sm">No payroll data</td></tr>}

@@ -1,0 +1,67 @@
+[{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/HRDashboard.tsx",
+	"owner": "typescript",
+	"code": "2339",
+	"severity": 8,
+	"message": "Property 'daysPresent' does not exist on type 'EngineerSummary'.",
+	"source": "ts",
+	"startLineNumber": 1769,
+	"startColumn": 83,
+	"endLineNumber": 1769,
+	"endColumn": 94
+},{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/HRDashboard.tsx",
+	"owner": "typescript",
+	"code": "2339",
+	"severity": 8,
+	"message": "Property 'daysAbsent' does not exist on type 'EngineerSummary'.",
+	"source": "ts",
+	"startLineNumber": 1770,
+	"startColumn": 83,
+	"endLineNumber": 1770,
+	"endColumn": 93
+},{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/HRDashboard.tsx",
+	"owner": "typescript",
+	"code": "2339",
+	"severity": 8,
+	"message": "Property 'reportCount' does not exist on type 'ClientReport'.",
+	"source": "ts",
+	"startLineNumber": 1788,
+	"startColumn": 79,
+	"endLineNumber": 1788,
+	"endColumn": 90
+},{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/HRDashboard.tsx",
+	"owner": "typescript",
+	"code": "2339",
+	"severity": 8,
+	"message": "Property 'engineerCount' does not exist on type 'ClientReport'.",
+	"source": "ts",
+	"startLineNumber": 1789,
+	"startColumn": 79,
+	"endLineNumber": 1789,
+	"endColumn": 92
+},{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/HRDashboard.tsx",
+	"owner": "typescript",
+	"code": "2339",
+	"severity": 8,
+	"message": "Property 'daysPresent' does not exist on type 'PayrollRecord'.",
+	"source": "ts",
+	"startLineNumber": 1814,
+	"startColumn": 81,
+	"endLineNumber": 1814,
+	"endColumn": 92
+},{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/HRDashboard.tsx",
+	"owner": "typescript",
+	"code": "2339",
+	"severity": 8,
+	"message": "Property 'salary' does not exist on type 'PayrollRecord'.",
+	"source": "ts",
+	"startLineNumber": 1817,
+	"startColumn": 98,
+	"endLineNumber": 1817,
+	"endColumn": 104
+}]
