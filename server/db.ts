@@ -1,22 +1,18 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import mysql from 'mysql2/promise';
-import { drizzle } from 'drizzle-orm/mysql2';
+import { Pool } from 'pg';
+import { drizzle } from 'drizzle-orm/node-postgres';
 import * as schema from "@shared/schema";
 
-// MySQL local database configuration (itsm_helpdesk)
-const mysqlConfig = {
-  host: process.env.DB_HOST || '127.0.0.1',
-  port: parseInt(process.env.DB_PORT || '3306'),
-  database: process.env.DB_NAME || 'itsm_helpdesk',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASS || '',
-  charset: process.env.DB_CHARSET || 'utf8mb4',
-  connectionLimit: 10,
-  acquireTimeout: 60000,
-  timeout: 60000,
-};
+if (!process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL environment variable is required');
+}
 
-console.log(`🔗 Connecting to MySQL database: ${mysqlConfig.host}:${mysqlConfig.port}/${mysqlConfig.database}`);
-export const connection = mysql.createPool(mysqlConfig);
-export const db = drizzle(connection, { schema, mode: 'default' });
+export const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+});
+
+console.log(`🔗 Connecting to PostgreSQL database`);
+export const connection = pool;
+export const db = drizzle(pool, { schema });

@@ -7,7 +7,7 @@ channel = "stable-25_05"
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["npm", "run", "start"]
+run = ["node", "./dist/index.cjs"]
 build = ["npm", "run", "build"]
 
 [[ports]]
@@ -17,15 +17,6 @@ externalPort = 80
 [[ports]]
 localPort = 5001
 externalPort = 3000
-exposeLocalhost = true
-
-[[ports]]
-localPort = 44391
-externalPort = 3002
-
-[[ports]]
-localPort = 45297
-externalPort = 3001
 
 [workflows]
 runButton = "Project"
@@ -53,3 +44,10 @@ waitForPort = 5000
 
 [agent]
 integrations = ["javascript_supabase:1.0.0", "javascript_anthropic:1.0.0"]
+stack = "FULLSTACK_JS"
+
+[userenv]
+
+[userenv.shared]
+NODE_ENV = "development"
+PORT = "5000"
