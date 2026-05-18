@@ -1,0 +1,67 @@
+[{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/AdminDashboard.tsx",
+	"owner": "typescript",
+	"code": "2345",
+	"severity": 8,
+	"message": "Argument of type 'string' is not assignable to parameter of type 'number'.",
+	"source": "ts",
+	"startLineNumber": 1343,
+	"startColumn": 45,
+	"endLineNumber": 1343,
+	"endColumn": 65
+},{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/AdminDashboard.tsx",
+	"owner": "typescript",
+	"code": "2339",
+	"severity": 8,
+	"message": "Property 'todaySessions' does not exist on type 'User'.",
+	"source": "ts",
+	"startLineNumber": 1517,
+	"startColumn": 52,
+	"endLineNumber": 1517,
+	"endColumn": 65
+},{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/AdminDashboard.tsx",
+	"owner": "typescript",
+	"code": "2339",
+	"severity": 8,
+	"message": "Property 'todaySessions' does not exist on type 'User'.",
+	"source": "ts",
+	"startLineNumber": 1518,
+	"startColumn": 72,
+	"endLineNumber": 1518,
+	"endColumn": 85
+},{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/AdminDashboard.tsx",
+	"owner": "typescript",
+	"code": "2345",
+	"severity": 8,
+	"message": "Argument of type 'string' is not assignable to parameter of type 'number'.",
+	"source": "ts",
+	"startLineNumber": 1658,
+	"startColumn": 77,
+	"endLineNumber": 1658,
+	"endColumn": 81
+},{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/HRDashboard.tsx",
+	"owner": "typescript",
+	"code": "2339",
+	"severity": 8,
+	"message": "Property 'presentDays' does not exist on type 'PayrollRecord'.",
+	"source": "ts",
+	"startLineNumber": 1991,
+	"startColumn": 102,
+	"endLineNumber": 1991,
+	"endColumn": 113
+},{
+	"resource": "/C:/inetpub/wwwroot/ITSM 25Feb-16-00/client/src/site-engg/components/dashboards/HRDashboard.tsx",
+	"owner": "typescript",
+	"code": "2339",
+	"severity": 8,
+	"message": "Property 'absentDays' does not exist on type 'PayrollRecord'.",
+	"source": "ts",
+	"startLineNumber": 1992,
+	"startColumn": 98,
+	"endLineNumber": 1992,
+	"endColumn": 108
+}]
