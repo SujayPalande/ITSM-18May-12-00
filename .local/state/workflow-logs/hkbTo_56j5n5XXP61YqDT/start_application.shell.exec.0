@@ -1,0 +1,19 @@
+
+> rest-express@1.0.0 dev
+> cross-env NODE_ENV=development tsx server/index.ts
+
+[1G[0K[dotenv@17.2.3] injecting env (19) from .env [2m-- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`[0m
+🔗 Connecting to PostgreSQL database
+[dotenv@17.2.3] injecting env (0) from .env [2m-- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops[0m
+Starting domain seeding...
+Domain seeding completed.
+[Seed] Updating user: admin (admin@example.com)
+[Seed] Updating user: agent (agent@example.com)
+[Seed] Updating user: user (user@example.com)
+[Seed] Updating user: shivam (shivam.jagtap@cybaemtech.com)
+Starting domain seeding...
+Domain seeding completed.
+8:24:15 AM [express] 🚀 Server running at http://0.0.0.0:5000
+
+[1m[33mwarn[39m[22m - The class `ease-[cubic-bezier(0.4,0,0.2,1)]` is ambiguous and matches multiple utilities.
+[1m[33mwarn[39m[22m - If this is content and not a class, replace it with `ease-&lsqb;cubic-bezier(0.4,0,0.2,1)&rsqb;` to silence this warning.
