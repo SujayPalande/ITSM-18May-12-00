@@ -279,13 +279,18 @@ export default function EngineerDashboard() {
           {/* Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {statBlocks.map(s => (
-              <div key={s.label} className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 overflow-hidden relative">
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${s.gradient} rounded-t-2xl`} />
-                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${s.gradient} flex items-center justify-center mb-4 shadow-sm`}>
-                  <s.icon className="w-5 h-5 text-white" />
+              <div key={s.label} className={`relative rounded-2xl p-5 bg-gradient-to-br ${s.gradient} shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 overflow-hidden cursor-default`}>
+                <div className="absolute -right-4 -bottom-4 opacity-[0.15]">
+                  <s.icon className="w-24 h-24 text-white" />
                 </div>
-                <p className={`text-2xl font-black tracking-tight ${s.valueColor}`}>{s.value}</p>
-                <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mt-1.5">{s.label}</p>
+                <div className="absolute inset-0 bg-white/5 rounded-2xl" />
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 border border-white/20">
+                    <s.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <p className="text-3xl font-black text-white tracking-tight tabular-nums drop-shadow">{s.value}</p>
+                  <p className="text-white/70 text-[11px] font-bold uppercase tracking-widest mt-1.5">{s.label}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -429,15 +434,16 @@ export default function EngineerDashboard() {
 
           {/* ── LEAVE ── */}
           {tab === 'leave' && (
-            <div className="max-w-2xl space-y-6">
-              <div>
+            <div className="grid gap-6 lg:grid-cols-5">
+              {/* Form — left col */}
+              <div className="lg:col-span-2">
                 <div className="flex items-center gap-2 mb-4">
                   <Calendar className="w-3.5 h-3.5 text-amber-500" />
                   <p className="text-slate-700 text-sm font-bold">New Request</p>
                 </div>
                 <form onSubmit={submitLeave} className="space-y-4 bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
                   <div className="h-0.5 -mx-6 -mt-6 mb-6 rounded-t-2xl bg-gradient-to-r from-amber-400 to-orange-500" />
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className={FL}>Start Date</label>
                       <input required type="date" value={leaveForm.startDate} onChange={e => setLeaveForm({ ...leaveForm, startDate: e.target.value })} className={F} />
@@ -449,7 +455,7 @@ export default function EngineerDashboard() {
                   </div>
                   <div>
                     <label className={FL}>Reason</label>
-                    <textarea required value={leaveForm.reason} onChange={e => setLeaveForm({ ...leaveForm, reason: e.target.value })} className={`${F} min-h-[80px]`} placeholder="Reason for leave..." />
+                    <textarea required value={leaveForm.reason} onChange={e => setLeaveForm({ ...leaveForm, reason: e.target.value })} className={`${F} min-h-[100px]`} placeholder="Reason for leave..." />
                   </div>
                   <button type="submit" disabled={sub}
                     className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 flex items-center justify-center gap-2 shadow-md shadow-blue-200 hover:-translate-y-0.5">
@@ -459,30 +465,39 @@ export default function EngineerDashboard() {
                 </form>
               </div>
 
-              <div>
+              {/* My Requests — right col */}
+              <div className="lg:col-span-3">
                 <div className="flex items-center justify-between mb-4">
-                  <p className="text-slate-700 text-sm font-bold">My Requests</p>
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-3.5 h-3.5 text-slate-400" />
+                    <p className="text-slate-700 text-sm font-bold">My Requests</p>
+                  </div>
                   <span className="text-slate-400 text-xs font-semibold bg-slate-100 px-3 py-1 rounded-full border border-slate-200">{leaves.length} total</span>
                 </div>
                 <div className="space-y-3">
                   {leaves.length > 0 ? leaves.map(l => (
                     <div key={l.id} className="bg-white rounded-2xl border border-slate-100 overflow-hidden hover:border-blue-200 hover:shadow-md transition-all duration-200">
-                      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-50">
-                        <div>
-                          <p className="font-bold text-slate-800 text-sm">{new Date(l.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – {new Date(l.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
-                          <p className="text-slate-400 text-xs font-medium mt-0.5">{l.reason}</p>
+                      <div className="flex items-center justify-between px-5 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                            <Calendar className="w-4 h-4 text-blue-500" />
+                          </div>
+                          <div>
+                            <p className="font-bold text-slate-800 text-sm">{new Date(l.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – {new Date(l.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
+                            <p className="text-slate-400 text-xs font-medium mt-0.5 truncate max-w-[220px]">{l.reason}</p>
+                          </div>
                         </div>
-                        <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide border ${leaveStatusStyle(l.status)}`}>{l.status}</span>
+                        <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide border shrink-0 ${leaveStatusStyle(l.status)}`}>{l.status}</span>
                       </div>
                     </div>
                   )) : (
-                    <div className="py-24 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
+                    <div className="py-20 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
                       <div className="flex flex-col items-center gap-3">
                         <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
                           <Calendar className="w-7 h-7 text-amber-400" />
                         </div>
-                        <p className="text-slate-600 text-sm font-bold">No leave requests</p>
-                        <p className="text-slate-400 text-xs font-medium">Submit a request to take time off</p>
+                        <p className="text-slate-600 text-sm font-bold">No leave requests yet</p>
+                        <p className="text-slate-400 text-xs font-medium">Submit a request using the form</p>
                       </div>
                     </div>
                   )}

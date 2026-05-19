@@ -242,21 +242,20 @@ export default function AdminDashboard() {
               {/* Stat cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
                 {statBlocks.map(s => (
-                  <div key={s.label} className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 overflow-hidden relative group">
-                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br ${s.gradient} rounded-2xl`} style={{ opacity: 0 }} />
-                    <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${s.gradient} rounded-t-2xl`} />
+                  <div key={s.label} className={`relative rounded-2xl p-5 bg-gradient-to-br ${s.gradient} shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 overflow-hidden cursor-default`}>
+                    <div className="absolute -right-4 -bottom-4 opacity-[0.15]">
+                      <s.icon className="w-24 h-24 text-white" />
+                    </div>
+                    <div className="absolute inset-0 bg-white/5 rounded-2xl" />
                     <div className="relative">
-                      <div className={`w-11 h-11 rounded-xl ${s.iconBg} bg-opacity-10 flex items-center justify-center mb-4 shadow-sm`}
-                        style={{ background: `linear-gradient(135deg, var(--tw-gradient-stops))` }}>
-                        <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${s.gradient} flex items-center justify-center shadow-sm`}>
-                          <s.icon className="w-5 h-5 text-white" />
-                        </div>
+                      <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 border border-white/20">
+                        <s.icon className="w-5 h-5 text-white" />
                       </div>
-                      <p className="text-4xl font-black text-slate-900 tracking-tight tabular-nums">{s.value}</p>
-                      <p className="text-slate-500 text-[11px] font-bold uppercase tracking-widest mt-1.5">{s.label}</p>
+                      <p className="text-4xl font-black text-white tracking-tight tabular-nums drop-shadow">{s.value}</p>
+                      <p className="text-white/70 text-[11px] font-bold uppercase tracking-widest mt-1.5">{s.label}</p>
                       <div className="flex items-center gap-1.5 mt-2">
-                        <TrendingUp className="w-3 h-3 text-slate-300" />
-                        <p className="text-slate-300 text-[10px] font-semibold">{s.trend}</p>
+                        <TrendingUp className="w-3 h-3 text-white/40" />
+                        <p className="text-white/40 text-[10px] font-semibold">{s.trend}</p>
                       </div>
                     </div>
                   </div>
@@ -509,7 +508,7 @@ export default function AdminDashboard() {
 
           {/* ── MUSTER ── */}
           {tab === 'muster' && (
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden p-6">
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
               <MusterRoll />
             </div>
           )}
