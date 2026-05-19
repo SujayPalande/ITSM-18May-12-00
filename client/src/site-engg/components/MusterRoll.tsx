@@ -82,8 +82,8 @@ export default function MusterRoll({ clientId, engineerIds }: MusterRollProps) {
     const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
     return (
-      <div className="overflow-x-auto rounded-xl border border-slate-100">
-        <table className="w-full text-xs border-collapse">
+      <div className="overflow-x-auto rounded-xl border border-slate-100 max-w-full">
+        <table className="text-xs border-collapse" style={{ minWidth: 'max-content' }}>
           <thead>
             <tr className="bg-slate-50 border-b border-slate-100">
               <th className="sticky left-0 bg-slate-50 z-10 px-4 py-3 text-left border-r border-slate-100 min-w-[150px] text-[10px] font-bold text-slate-500 uppercase tracking-[0.1em]">
@@ -207,8 +207,8 @@ export default function MusterRoll({ clientId, engineerIds }: MusterRollProps) {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     return (
-      <div className="overflow-x-auto rounded-xl border border-slate-100">
-        <table className="w-full text-xs border-collapse">
+      <div className="overflow-x-auto rounded-xl border border-slate-100 max-w-full">
+        <table className="text-xs border-collapse" style={{ minWidth: 'max-content' }}>
           <thead>
             <tr className="bg-slate-50 border-b border-slate-100">
               <th className="sticky left-0 bg-slate-50 z-10 px-4 py-3.5 text-left border-r border-slate-100 min-w-[150px] text-[10px] font-bold text-slate-500 uppercase tracking-[0.1em]">Staff Name</th>

@@ -636,24 +636,39 @@ export default function HRDashboard() {
             <div className="space-y-5">
               <p className="text-slate-500 text-sm font-medium">{profileTotal} staff profiles</p>
               <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-                {engineerProfiles.map(ep => (
-                  <div key={(ep as any).id || (ep as any).userId} className="bg-white rounded-2xl border border-slate-100 p-5 hover:border-emerald-200 hover:shadow-md transition-all duration-150">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-base shadow-md shadow-emerald-200">
-                        {((ep as any).name || 'E')[0].toUpperCase()}
+                {engineerProfiles.map(ep => {
+                  const role = ((ep as any).role || 'engineer').toLowerCase();
+                  const roleConfig: Record<string, { gradient: string; shadow: string; bg: string; text: string; border: string }> = {
+                    admin:    { gradient: 'from-violet-500 to-purple-600', shadow: 'shadow-violet-200', bg: 'bg-violet-50',   text: 'text-violet-700',  border: 'border-violet-200'  },
+                    engineer: { gradient: 'from-blue-500 to-indigo-600',   shadow: 'shadow-blue-200',   bg: 'bg-blue-50',     text: 'text-blue-700',    border: 'border-blue-200'    },
+                    hr:       { gradient: 'from-emerald-500 to-teal-600',  shadow: 'shadow-emerald-200',bg: 'bg-emerald-50',  text: 'text-emerald-700', border: 'border-emerald-200' },
+                    client:   { gradient: 'from-amber-500 to-orange-500',  shadow: 'shadow-amber-200',  bg: 'bg-amber-50',    text: 'text-amber-700',   border: 'border-amber-200'   },
+                  };
+                  const cfg = roleConfig[role] || roleConfig.engineer;
+                  return (
+                    <div key={(ep as any).id || (ep as any).userId} className="bg-white rounded-2xl border border-slate-100 p-5 hover:border-emerald-200 hover:shadow-md transition-all duration-150">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${cfg.gradient} flex items-center justify-center text-white font-bold text-base shadow-md ${cfg.shadow}`}>
+                          {((ep as any).name || 'E')[0].toUpperCase()}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-bold text-slate-800 text-sm truncate">{(ep as any).name || 'Staff'}</p>
+                          <p className="text-slate-400 text-xs font-medium truncate">{(ep as any).email || ''}</p>
+                        </div>
                       </div>
-                      <div className="min-w-0">
-                        <p className="font-bold text-slate-800 text-sm truncate">{(ep as any).name || 'Engineer'}</p>
-                        <p className="text-slate-400 text-xs font-medium truncate">{(ep as any).email || ''}</p>
+                      <div className="flex flex-wrap gap-2">
+                        <span className={`inline-block px-3 py-1 ${cfg.bg} ${cfg.text} border ${cfg.border} rounded-full text-[10px] font-bold uppercase tracking-widest`}>
+                          {role}
+                        </span>
+                        {(ep as any).designation && (ep as any).designation.toLowerCase() !== role && (
+                          <span className="inline-block px-3 py-1 bg-slate-50 text-slate-500 border border-slate-200 rounded-full text-[10px] font-semibold tracking-wide">
+                            {(ep as any).designation}
+                          </span>
+                        )}
                       </div>
                     </div>
-                    {(ep as any).designation && (
-                      <span className="inline-block px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-[10px] font-bold uppercase tracking-widest">
-                        {(ep as any).designation}
-                      </span>
-                    )}
-                  </div>
-                ))}
+                  );
+                })}
                 {engineerProfiles.length === 0 && (
                   <div className="col-span-3 py-20 text-center">
                     <div className="flex flex-col items-center gap-3">

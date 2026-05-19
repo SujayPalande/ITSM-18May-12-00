@@ -45,6 +45,7 @@ waitForPort = 5000
 [agent]
 integrations = ["javascript_supabase:1.0.0", "javascript_anthropic:1.0.0"]
 stack = "FULLSTACK_JS"
+expertMode = true
 
 [userenv]
 
