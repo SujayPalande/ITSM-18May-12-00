@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   FileText, Clock, Calendar, Plus, Send, CheckCircle, AlertCircle,
-  LogOut, Navigation, Briefcase, Activity, MapPin, Zap,
+  LogOut, Navigation, Briefcase, Activity, MapPin, Zap, TrendingUp, Sparkles,
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { checkInService } from '../../services/checkInService';
@@ -100,10 +100,10 @@ export default function EngineerDashboard() {
   }
 
   if (loading) return (
-    <div className="min-h-screen bg-[#f4f6f9] flex items-center justify-center">
+    <div className="min-h-screen bg-[#f0f2f7] flex items-center justify-center">
       <div className="text-center space-y-4">
-        <div className="w-10 h-10 border-2 border-slate-200 border-t-blue-500 rounded-full animate-spin mx-auto" />
-        <p className="text-slate-400 text-sm font-medium">Loading your workspace...</p>
+        <div className="w-12 h-12 border-2 border-blue-100 border-t-blue-500 rounded-full animate-spin mx-auto shadow-sm" />
+        <p className="text-slate-400 text-sm font-semibold">Loading your workspace...</p>
       </div>
     </div>
   );
@@ -114,10 +114,10 @@ export default function EngineerDashboard() {
   const isDone = todayCheckIn && !!todayCheckIn.checkOutTime;
 
   const statBlocks = [
-    { label: 'Duty Status',    value: isActive ? 'On Duty' : isDone ? 'Done' : 'Pending', icon: Activity,  gradient: 'from-emerald-500 to-teal-600', bg: isActive ? 'bg-emerald-50' : 'bg-slate-50', iconColor: isActive ? 'text-emerald-600' : 'text-slate-400', valueColor: isActive ? 'text-emerald-600' : 'text-slate-600' },
-    { label: 'Sites',          value: assignments.length, icon: Briefcase, gradient: 'from-blue-500 to-indigo-600',  bg: 'bg-blue-50',   iconColor: 'text-blue-600',   valueColor: 'text-slate-800' },
-    { label: 'My Reports',     value: reports.length,     icon: FileText,  gradient: 'from-violet-500 to-purple-600', bg: 'bg-violet-50', iconColor: 'text-violet-600', valueColor: 'text-slate-800' },
-    { label: 'Leave Requests', value: leaves.length,      icon: Calendar,  gradient: 'from-amber-500 to-orange-500',  bg: 'bg-amber-50',  iconColor: 'text-amber-600',  valueColor: 'text-slate-800' },
+    { label: 'Duty Status',    value: isActive ? 'On Duty' : isDone ? 'Done' : 'Off Duty', icon: Activity,  gradient: isActive ? 'from-emerald-500 to-teal-600' : 'from-slate-400 to-slate-500', valueColor: isActive ? 'text-emerald-600' : 'text-slate-500' },
+    { label: 'Sites Assigned', value: assignments.length,                                    icon: Briefcase, gradient: 'from-blue-500 to-indigo-600',   valueColor: 'text-slate-800' },
+    { label: 'My Reports',     value: reports.length,                                        icon: FileText,  gradient: 'from-violet-500 to-purple-600', valueColor: 'text-slate-800' },
+    { label: 'Leave Requests', value: leaves.length,                                         icon: Calendar,  gradient: 'from-amber-500 to-orange-500',  valueColor: 'text-slate-800' },
   ];
 
   const leaveStatusStyle = (status: string) => {
@@ -130,13 +130,14 @@ export default function EngineerDashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#f4f6f9]">
+    <div className="flex min-h-screen bg-[#f0f2f7]">
 
       {/* ─── SIDEBAR ─── */}
       <aside className="w-64 shrink-0 fixed top-14 left-0 h-[calc(100vh-3.5rem)] bg-[#0d1117] flex flex-col z-30">
+        <div className="h-0.5 w-full bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-600" />
 
         {/* Profile section */}
-        <div className="px-5 pt-6 pb-5 border-b border-white/[0.06]">
+        <div className="px-4 pt-5 pb-5 border-b border-white/[0.06]">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center text-white font-bold text-base shadow-lg shadow-blue-900/40">
               {user?.name?.charAt(0)}
@@ -149,8 +150,6 @@ export default function EngineerDashboard() {
           <div className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl border ${
             isActive
               ? 'bg-emerald-500/10 border-emerald-500/20'
-              : isDone
-              ? 'bg-white/[0.04] border-white/[0.06]'
               : 'bg-white/[0.04] border-white/[0.06]'
           }`}>
             <span className={`w-2 h-2 rounded-full shrink-0 ${isActive ? 'bg-emerald-400 animate-pulse' : 'bg-white/20'}`} />
@@ -161,20 +160,21 @@ export default function EngineerDashboard() {
         </div>
 
         <div className="px-3 pt-5 pb-4 flex-1 overflow-y-auto">
-          <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] mb-4 px-2">Navigation</p>
+          <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] mb-3 px-2">Navigation</p>
           <nav className="space-y-0.5">
             {NAV.map(n => (
               <button key={n.id} onClick={() => setTab(n.id)}
-                className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm transition-all duration-150 text-left group ${
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-150 text-left group ${
                   tab === n.id
                     ? 'bg-blue-600 text-white font-semibold shadow-lg shadow-blue-900/40'
                     : 'text-white/50 hover:text-white hover:bg-white/[0.06] font-medium'
                 }`}>
                 <n.icon className={`w-4 h-4 shrink-0 ${tab === n.id ? 'text-white' : 'text-white/30 group-hover:text-white/70'}`} />
-                <div className="min-w-0">
+                <div className="flex-1 min-w-0">
                   <p className="truncate">{n.label}</p>
-                  {tab === n.id && <p className="text-[10px] text-blue-200/60 font-normal mt-0.5">{n.desc}</p>}
+                  {tab === n.id && <p className="text-[10px] text-blue-200/50 font-normal mt-0.5">{n.desc}</p>}
                 </div>
+                {tab === n.id && <div className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />}
               </button>
             ))}
           </nav>
@@ -185,10 +185,13 @@ export default function EngineerDashboard() {
       <main className="ml-64 flex-1 min-h-screen flex flex-col">
 
         {/* Page header */}
-        <div className="sticky top-14 z-20 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-8 py-4 shadow-sm">
+        <div className="sticky top-14 z-20 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-8 py-4 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-lg font-bold text-slate-900 tracking-tight">{NAV.find(n => n.id === tab)?.label}</h1>
+              <h1 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                {NAV.find(n => n.id === tab)?.label}
+                {tab === 'attendance' && <Sparkles className="w-4 h-4 text-blue-400" />}
+              </h1>
               <p className="text-slate-400 text-xs mt-0.5 font-medium">{today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
             </div>
             {isActive && (
@@ -202,70 +205,87 @@ export default function EngineerDashboard() {
 
         <div className="flex-1 p-8 space-y-6">
 
-          {/* ── CHECK-IN / CHECK-OUT CARD ── */}
-          <div className={`rounded-2xl border p-6 flex items-center justify-between gap-6 shadow-sm ${
+          {/* ── SHIFT CONTROL CARD ── */}
+          <div className={`relative rounded-2xl border overflow-hidden shadow-sm ${
             isActive
-              ? 'bg-gradient-to-r from-emerald-50 to-white border-emerald-200'
+              ? 'border-emerald-200'
               : isDone
-              ? 'bg-slate-50 border-slate-200'
-              : 'bg-gradient-to-r from-blue-50 to-white border-blue-200'
+              ? 'border-slate-200'
+              : 'border-blue-200'
           }`}>
-            <div className="flex items-center gap-4">
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 shadow-md ${
-                isActive ? 'bg-emerald-500 shadow-emerald-200' : isDone ? 'bg-slate-200' : 'bg-blue-500 shadow-blue-200'
-              }`}>
-                {isActive
-                  ? <Activity className="w-6 h-6 text-white" />
-                  : isDone
-                  ? <CheckCircle className="w-6 h-6 text-slate-400" />
-                  : <Navigation className="w-6 h-6 text-white" />
-                }
-              </div>
-              <div>
-                <p className={`font-bold text-lg tracking-tight ${isActive ? 'text-emerald-700' : isDone ? 'text-slate-500' : 'text-slate-800'}`}>
-                  {isActive ? 'Currently On Duty' : isDone ? 'Shift Complete for Today' : 'Ready to Start Your Shift?'}
-                </p>
-                <p className="text-slate-400 text-sm mt-0.5 font-medium">
+            {/* Background pattern */}
+            <div className={`absolute inset-0 ${
+              isActive ? 'bg-gradient-to-r from-emerald-50 via-white to-emerald-50/30'
+              : isDone ? 'bg-slate-50'
+              : 'bg-gradient-to-r from-blue-50 via-white to-blue-50/30'
+            }`} />
+            <div className="absolute top-0 left-0 right-0 h-0.5" style={{
+              background: isActive
+                ? 'linear-gradient(90deg, #10b981, #14b8a6)'
+                : isDone ? '#e2e8f0'
+                : 'linear-gradient(90deg, #3b82f6, #6366f1)'
+            }} />
+
+            <div className="relative flex items-center justify-between gap-6 p-6">
+              <div className="flex items-center gap-5">
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-lg ${
+                  isActive ? 'bg-gradient-to-br from-emerald-500 to-teal-600 shadow-emerald-200'
+                  : isDone ? 'bg-slate-200'
+                  : 'bg-gradient-to-br from-blue-500 to-indigo-600 shadow-blue-200'
+                }`}>
                   {isActive
-                    ? `Checked in at ${new Date(todayCheckIn!.checkInTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}${todayCheckIn?.locationName ? ` · ${todayCheckIn.locationName.split(',')[0]}` : ''}`
+                    ? <Activity className="w-7 h-7 text-white" />
                     : isDone
-                    ? `Checked out at ${new Date(todayCheckIn!.checkOutTime!).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
-                    : today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
+                    ? <CheckCircle className="w-7 h-7 text-slate-400" />
+                    : <Navigation className="w-7 h-7 text-white" />
                   }
-                </p>
-              </div>
-            </div>
-            <div className="shrink-0">
-              {!todayCheckIn ? (
-                <button onClick={checkIn} disabled={sub}
-                  className="flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 shadow-lg shadow-blue-200 hover:-translate-y-px">
-                  {sub ? <Clock className="w-4 h-4 animate-spin" /> : <Navigation className="w-4 h-4" />}
-                  {sub ? 'Locating...' : 'Start Shift'}
-                </button>
-              ) : !todayCheckIn.checkOutTime ? (
-                <button onClick={checkOut} disabled={sub}
-                  className="flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-400 hover:to-rose-500 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 shadow-lg shadow-red-200 hover:-translate-y-px">
-                  {sub ? <Clock className="w-4 h-4 animate-spin" /> : <LogOut className="w-4 h-4" />}
-                  {sub ? 'Ending...' : 'End Shift'}
-                </button>
-              ) : (
-                <div className="flex items-center gap-2.5 px-6 py-3 bg-white border border-emerald-200 text-emerald-700 rounded-xl font-bold text-sm shadow-sm">
-                  <CheckCircle className="w-4 h-4" /> Done for Today
                 </div>
-              )}
+                <div>
+                  <p className={`font-black text-xl tracking-tight ${isActive ? 'text-emerald-700' : isDone ? 'text-slate-500' : 'text-slate-800'}`}>
+                    {isActive ? 'Currently On Duty' : isDone ? 'Shift Complete for Today' : 'Ready to Start Your Shift?'}
+                  </p>
+                  <p className="text-slate-400 text-sm mt-1 font-medium">
+                    {isActive
+                      ? `Checked in at ${new Date(todayCheckIn!.checkInTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}${todayCheckIn?.locationName ? ` · ${todayCheckIn.locationName.split(',')[0]}` : ''}`
+                      : isDone
+                      ? `Checked out at ${new Date(todayCheckIn!.checkOutTime!).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+                      : today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
+                    }
+                  </p>
+                </div>
+              </div>
+              <div className="shrink-0">
+                {!todayCheckIn ? (
+                  <button onClick={checkIn} disabled={sub}
+                    className="flex items-center gap-2.5 px-8 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 shadow-lg shadow-blue-200 hover:-translate-y-0.5">
+                    {sub ? <Clock className="w-4 h-4 animate-spin" /> : <Navigation className="w-4 h-4" />}
+                    {sub ? 'Locating...' : 'Start Shift'}
+                  </button>
+                ) : !todayCheckIn.checkOutTime ? (
+                  <button onClick={checkOut} disabled={sub}
+                    className="flex items-center gap-2.5 px-8 py-3.5 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-400 hover:to-rose-500 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 shadow-lg shadow-red-200 hover:-translate-y-0.5">
+                    {sub ? <Clock className="w-4 h-4 animate-spin" /> : <LogOut className="w-4 h-4" />}
+                    {sub ? 'Ending...' : 'End Shift'}
+                  </button>
+                ) : (
+                  <div className="flex items-center gap-2.5 px-6 py-3 bg-white border border-emerald-200 text-emerald-700 rounded-xl font-bold text-sm shadow-sm">
+                    <CheckCircle className="w-4 h-4" /> Done for Today
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {statBlocks.map(s => (
-              <div key={s.label} className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-px transition-all duration-200 overflow-hidden relative">
-                <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${s.gradient}`} />
-                <div className={`w-10 h-10 rounded-xl ${s.bg} flex items-center justify-center mb-4`}>
-                  <s.icon className={`w-5 h-5 ${s.iconColor}`} />
+              <div key={s.label} className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 overflow-hidden relative">
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${s.gradient} rounded-t-2xl`} />
+                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${s.gradient} flex items-center justify-center mb-4 shadow-sm`}>
+                  <s.icon className="w-5 h-5 text-white" />
                 </div>
                 <p className={`text-2xl font-black tracking-tight ${s.valueColor}`}>{s.value}</p>
-                <p className="text-slate-400 text-[11px] font-semibold uppercase tracking-widest mt-1">{s.label}</p>
+                <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mt-1.5">{s.label}</p>
               </div>
             ))}
           </div>
@@ -274,13 +294,16 @@ export default function EngineerDashboard() {
           {tab === 'attendance' && (
             <div>
               <div className="flex items-center justify-between mb-4">
-                <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest">Shift History</p>
-                <span className="text-slate-400 text-xs font-medium bg-slate-100 px-3 py-1 rounded-full">{checkIns.length} records</span>
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="w-3.5 h-3.5 text-blue-500" />
+                  <p className="text-slate-700 text-sm font-bold">Shift History</p>
+                </div>
+                <span className="text-slate-400 text-xs font-semibold bg-slate-100 px-3 py-1 rounded-full border border-slate-200">{checkIns.length} records</span>
               </div>
               <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-slate-50/80 border-b border-slate-100">
+                    <tr className="bg-gradient-to-r from-slate-50 to-slate-50/50 border-b border-slate-100">
                       {['Date','Check In','Check Out','Location','Status'].map(h => (
                         <th key={h} className="px-6 py-4 text-left text-[10px] font-bold text-slate-400 uppercase tracking-widest">{h}</th>
                       ))}
@@ -288,11 +311,15 @@ export default function EngineerDashboard() {
                   </thead>
                   <tbody className="divide-y divide-slate-50">
                     {checkIns.length > 0 ? checkIns.slice(0, 20).map(ci => (
-                      <tr key={ci.id} className="hover:bg-slate-50/60 transition-colors">
+                      <tr key={ci.id} className="hover:bg-blue-50/30 transition-colors">
                         <td className="px-6 py-4 font-bold text-slate-800 text-sm">{new Date(ci.checkInTime).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</td>
-                        <td className="px-6 py-4 text-slate-600 text-sm font-semibold">{new Date(ci.checkInTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+                        <td className="px-6 py-4 text-slate-700 text-sm font-semibold">{new Date(ci.checkInTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
                         <td className="px-6 py-4 text-slate-500 text-sm font-medium">{ci.checkOutTime ? new Date(ci.checkOutTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : <span className="text-slate-200">—</span>}</td>
-                        <td className="px-6 py-4 text-slate-400 text-xs truncate max-w-[180px]">{ci.locationName || 'N/A'}</td>
+                        <td className="px-6 py-4 text-slate-400 text-xs truncate max-w-[180px] font-medium">
+                          {ci.locationName ? (
+                            <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-blue-400 shrink-0" />{ci.locationName.split(',')[0]}</span>
+                          ) : 'N/A'}
+                        </td>
                         <td className="px-6 py-4">
                           <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide border ${ci.checkOutTime ? 'bg-slate-100 text-slate-500 border-slate-200' : 'bg-emerald-50 text-emerald-700 border-emerald-200'}`}>
                             {!ci.checkOutTime && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />}
@@ -302,13 +329,13 @@ export default function EngineerDashboard() {
                       </tr>
                     )) : (
                       <tr>
-                        <td colSpan={5} className="py-20 text-center">
+                        <td colSpan={5} className="py-24 text-center">
                           <div className="flex flex-col items-center gap-3">
-                            <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center">
-                              <Clock className="w-6 h-6 text-slate-400" />
+                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                              <Clock className="w-7 h-7 text-blue-400" />
                             </div>
-                            <p className="text-slate-500 text-sm font-semibold">No shifts yet</p>
-                            <p className="text-slate-300 text-xs font-medium">Start your first shift using the button above</p>
+                            <p className="text-slate-600 text-sm font-bold">No shifts yet</p>
+                            <p className="text-slate-400 text-xs font-medium">Start your first shift using the button above</p>
                           </div>
                         </td>
                       </tr>
@@ -323,8 +350,12 @@ export default function EngineerDashboard() {
           {tab === 'reports' && (
             <div className="grid gap-6 lg:grid-cols-5">
               <div className="lg:col-span-2">
-                <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-4">New Report</p>
+                <div className="flex items-center gap-2 mb-4">
+                  <Zap className="w-3.5 h-3.5 text-violet-500" />
+                  <p className="text-slate-700 text-sm font-bold">New Report</p>
+                </div>
                 <form onSubmit={submitReport} className="space-y-4 bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                  <div className="h-0.5 -mx-6 -mt-6 mb-6 rounded-t-2xl bg-gradient-to-r from-blue-500 to-indigo-600" />
                   <div>
                     <label className={FL}>Client / Project</label>
                     <select required value={repForm.clientId} onChange={e => setRepForm({ ...repForm, clientId: e.target.value })} className={`${F} appearance-none`}>
@@ -343,7 +374,7 @@ export default function EngineerDashboard() {
                     <textarea value={repForm.issues} onChange={e => setRepForm({ ...repForm, issues: e.target.value })} className={`${F} min-h-[70px]`} placeholder="Any blockers or issues?" />
                   </div>
                   <button type="submit" disabled={sub}
-                    className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 flex items-center justify-center gap-2 shadow-md shadow-blue-200 hover:-translate-y-px">
+                    className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 flex items-center justify-center gap-2 shadow-md shadow-blue-200 hover:-translate-y-0.5">
                     {sub ? <Clock className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                     {sub ? 'Submitting...' : 'Submit Report'}
                   </button>
@@ -351,18 +382,24 @@ export default function EngineerDashboard() {
               </div>
 
               <div className="lg:col-span-3">
-                <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-4">Submitted Reports</p>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <FileText className="w-3.5 h-3.5 text-slate-400" />
+                    <p className="text-slate-700 text-sm font-bold">Submitted Reports</p>
+                  </div>
+                  <span className="text-slate-400 text-xs font-semibold bg-slate-100 px-3 py-1 rounded-full border border-slate-200">{reports.length} total</span>
+                </div>
                 <div className="space-y-3">
                   {reports.length > 0 ? reports.sort((a, b) => new Date(b.date || b.createdAt).getTime() - new Date(a.date || a.createdAt).getTime()).map(r => (
                     <div key={r.id} className="bg-white rounded-2xl border border-slate-100 overflow-hidden hover:border-blue-200 hover:shadow-md transition-all duration-200">
-                      <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-50 bg-slate-50/60">
+                      <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-50 bg-gradient-to-r from-slate-50/80 to-transparent">
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm">
                             <FileText className="w-4 h-4 text-white" />
                           </div>
                           <span className="font-bold text-slate-800 text-sm">{r.clientName || 'Report'}</span>
                         </div>
-                        <span className="text-slate-400 text-xs font-medium bg-slate-100 px-2.5 py-1 rounded-full">{new Date(r.date || r.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                        <span className="text-slate-400 text-xs font-semibold bg-white border border-slate-100 px-2.5 py-1 rounded-full shadow-sm">{new Date(r.date || r.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
                       </div>
                       <div className="px-5 py-4 space-y-3">
                         <p className="text-slate-600 text-sm leading-relaxed">{r.workDone}</p>
@@ -375,13 +412,13 @@ export default function EngineerDashboard() {
                       </div>
                     </div>
                   )) : (
-                    <div className="py-20 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
+                    <div className="py-24 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
                       <div className="flex flex-col items-center gap-3">
-                        <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center">
-                          <FileText className="w-6 h-6 text-slate-400" />
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                          <FileText className="w-7 h-7 text-blue-400" />
                         </div>
-                        <p className="text-slate-500 text-sm font-semibold">No reports yet</p>
-                        <p className="text-slate-300 text-xs font-medium">Submit your first daily report</p>
+                        <p className="text-slate-600 text-sm font-bold">No reports yet</p>
+                        <p className="text-slate-400 text-xs font-medium">Submit your first daily report</p>
                       </div>
                     </div>
                   )}
@@ -394,8 +431,12 @@ export default function EngineerDashboard() {
           {tab === 'leave' && (
             <div className="max-w-2xl space-y-6">
               <div>
-                <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-4">New Request</p>
+                <div className="flex items-center gap-2 mb-4">
+                  <Calendar className="w-3.5 h-3.5 text-amber-500" />
+                  <p className="text-slate-700 text-sm font-bold">New Request</p>
+                </div>
                 <form onSubmit={submitLeave} className="space-y-4 bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                  <div className="h-0.5 -mx-6 -mt-6 mb-6 rounded-t-2xl bg-gradient-to-r from-amber-400 to-orange-500" />
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className={FL}>Start Date</label>
@@ -411,7 +452,7 @@ export default function EngineerDashboard() {
                     <textarea required value={leaveForm.reason} onChange={e => setLeaveForm({ ...leaveForm, reason: e.target.value })} className={`${F} min-h-[80px]`} placeholder="Reason for leave..." />
                   </div>
                   <button type="submit" disabled={sub}
-                    className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 flex items-center justify-center gap-2 shadow-md shadow-blue-200 hover:-translate-y-px">
+                    className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-bold text-sm transition-all duration-150 disabled:opacity-50 flex items-center justify-center gap-2 shadow-md shadow-blue-200 hover:-translate-y-0.5">
                     {sub ? <Clock className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                     {sub ? 'Submitting...' : 'Submit Request'}
                   </button>
@@ -419,7 +460,10 @@ export default function EngineerDashboard() {
               </div>
 
               <div>
-                <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-4">My Requests</p>
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-slate-700 text-sm font-bold">My Requests</p>
+                  <span className="text-slate-400 text-xs font-semibold bg-slate-100 px-3 py-1 rounded-full border border-slate-200">{leaves.length} total</span>
+                </div>
                 <div className="space-y-3">
                   {leaves.length > 0 ? leaves.map(l => (
                     <div key={l.id} className="bg-white rounded-2xl border border-slate-100 overflow-hidden hover:border-blue-200 hover:shadow-md transition-all duration-200">
@@ -432,12 +476,13 @@ export default function EngineerDashboard() {
                       </div>
                     </div>
                   )) : (
-                    <div className="py-20 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
+                    <div className="py-24 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
                       <div className="flex flex-col items-center gap-3">
-                        <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center">
-                          <Calendar className="w-6 h-6 text-slate-400" />
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
+                          <Calendar className="w-7 h-7 text-amber-400" />
                         </div>
-                        <p className="text-slate-500 text-sm font-semibold">No leave requests</p>
+                        <p className="text-slate-600 text-sm font-bold">No leave requests</p>
+                        <p className="text-slate-400 text-xs font-medium">Submit a request to take time off</p>
                       </div>
                     </div>
                   )}

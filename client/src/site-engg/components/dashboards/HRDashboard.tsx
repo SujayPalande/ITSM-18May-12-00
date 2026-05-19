@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {
   Users, CheckCircle, XCircle, Clock, Download, FileText, TrendingUp, Database,
   Mail, Send, BarChart3, Calendar, AlertCircle, ChevronLeft, ChevronRight,
-  RefreshCw, LayoutDashboard, MapPin,
+  RefreshCw, LayoutDashboard, MapPin, Sparkles, Zap,
 } from 'lucide-react';
 import { CheckIn, LeaveRequest, Engineer, DailyReport } from '../../types';
 import { exportToCSV } from '../../lib/export';
@@ -141,10 +141,10 @@ export default function HRDashboard() {
   const absent    = attendanceRegister.filter(r => r.status === 'absent').length;
 
   const statBlocks = [
-    { label: 'Present Today',   value: present,          icon: CheckCircle, gradient: 'from-emerald-500 to-teal-600', bg: 'bg-emerald-50', iconColor: 'text-emerald-600' },
-    { label: 'Pending Leaves',  value: pending,          icon: Clock,       gradient: 'from-amber-500 to-orange-500',  bg: 'bg-amber-50',   iconColor: 'text-amber-600' },
-    { label: 'Total Engineers', value: engineers.length, icon: Users,       gradient: 'from-blue-500 to-indigo-600',   bg: 'bg-blue-50',    iconColor: 'text-blue-600' },
-    { label: 'Reports Today',   value: reports.length,   icon: FileText,    gradient: 'from-violet-500 to-purple-600', bg: 'bg-violet-50',  iconColor: 'text-violet-600' },
+    { label: 'Present Today',   value: present,          icon: CheckCircle, gradient: 'from-emerald-500 to-teal-600',  desc: 'On duty today' },
+    { label: 'Pending Leaves',  value: pending,          icon: Clock,       gradient: 'from-amber-500 to-orange-500',  desc: 'Awaiting approval' },
+    { label: 'Total Engineers', value: engineers.length, icon: Users,       gradient: 'from-blue-500 to-indigo-600',   desc: 'Registered staff' },
+    { label: 'Reports Today',   value: reports.length,   icon: FileText,    gradient: 'from-violet-500 to-purple-600', desc: 'Work logs submitted' },
   ];
 
   const ActionBar = ({ exportFn, emailFn, showDate = true }: { exportFn: () => void; emailFn: () => void; showDate?: boolean }) => (
@@ -163,8 +163,11 @@ export default function HRDashboard() {
     </div>
   );
 
+  const today = new Date();
+  const greeting = today.getHours() < 12 ? 'Good Morning' : today.getHours() < 17 ? 'Good Afternoon' : 'Good Evening';
+
   return (
-    <div className="flex min-h-screen bg-[#f4f6f9]">
+    <div className="flex min-h-screen bg-[#f0f2f7]">
 
       {/* ─── TOAST ─── */}
       {toast && (
@@ -176,22 +179,39 @@ export default function HRDashboard() {
 
       {/* ─── SIDEBAR ─── */}
       <aside className="w-64 shrink-0 fixed top-14 left-0 h-[calc(100vh-3.5rem)] bg-[#0d1117] flex flex-col z-30 overflow-y-auto">
-        <div className="px-3 pt-6 pb-4 flex-1">
-          <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] mb-4 px-2">Navigation</p>
+        <div className="h-0.5 w-full bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600" />
+
+        {/* HR identity chip */}
+        <div className="px-4 pt-5 pb-4 border-b border-white/[0.06]">
+          <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center shrink-0">
+              <Users className="w-4 h-4 text-white" />
+            </div>
+            <div>
+              <p className="text-white text-xs font-bold">HR Manager</p>
+              <p className="text-white/30 text-[10px] font-medium">{greeting}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-3 pt-4 pb-4 flex-1">
+          <p className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] mb-3 px-2">Navigation</p>
           <nav className="space-y-0.5">
             {NAV.map(n => (
               <button key={n.id} onClick={() => setTab(n.id)}
-                className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm transition-all duration-150 text-left group ${
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-150 text-left group ${
                   tab === n.id
                     ? 'bg-emerald-600 text-white font-semibold shadow-lg shadow-emerald-900/40'
                     : 'text-white/50 hover:text-white hover:bg-white/[0.06] font-medium'
                 }`}>
                 <n.icon className={`w-4 h-4 shrink-0 ${tab === n.id ? 'text-white' : 'text-white/30 group-hover:text-white/70'}`} />
-                <span className="truncate">{n.label}</span>
+                <span className="truncate flex-1">{n.label}</span>
+                {tab === n.id && <div className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />}
               </button>
             ))}
           </nav>
         </div>
+
         <div className="px-3 pb-6 pt-4 border-t border-white/[0.06]">
           <button onClick={() => { loadData(); loadEnterprise(); }} disabled={loading}
             className="w-full flex items-center justify-center gap-2 py-2.5 bg-white/[0.06] hover:bg-white/[0.10] border border-white/[0.08] text-white/60 hover:text-white rounded-xl text-sm font-semibold transition-all">
@@ -202,23 +222,37 @@ export default function HRDashboard() {
 
       {/* ─── MAIN ─── */}
       <main className="ml-64 flex-1 min-h-screen flex flex-col">
-        <div className="sticky top-14 z-20 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-8 py-4 shadow-sm">
-          <h1 className="text-lg font-bold text-slate-900 tracking-tight">{NAV.find(n => n.id === tab)?.label}</h1>
-          <p className="text-slate-400 text-xs mt-0.5 font-medium">HR Dashboard — {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+        <div className="sticky top-14 z-20 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-8 py-4 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                {NAV.find(n => n.id === tab)?.label}
+                {tab === 'overview' && <Sparkles className="w-4 h-4 text-emerald-400" />}
+              </h1>
+              <p className="text-slate-400 text-xs mt-0.5 font-medium">HR Dashboard — {today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+            </div>
+            {pending > 0 && (
+              <div className="flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-full shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+                <span className="text-amber-700 text-xs font-bold">{pending} leave{pending > 1 ? 's' : ''} pending</span>
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className="flex-1 p-8 space-y-6">
+        <div className="flex-1 p-8 space-y-7">
 
           {/* Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {statBlocks.map(s => (
-              <div key={s.label} className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-px transition-all duration-200 overflow-hidden relative">
-                <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${s.gradient}`} />
-                <div className={`w-10 h-10 rounded-xl ${s.bg} flex items-center justify-center mb-4`}>
-                  <s.icon className={`w-5 h-5 ${s.iconColor}`} />
+              <div key={s.label} className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 overflow-hidden relative">
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${s.gradient} rounded-t-2xl`} />
+                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${s.gradient} flex items-center justify-center mb-4 shadow-sm`}>
+                  <s.icon className="w-5 h-5 text-white" />
                 </div>
-                <p className="text-3xl font-black text-slate-900 tracking-tight">{s.value}</p>
-                <p className="text-slate-400 text-[11px] font-semibold uppercase tracking-widest mt-1">{s.label}</p>
+                <p className="text-4xl font-black text-slate-900 tracking-tight tabular-nums">{s.value}</p>
+                <p className="text-slate-500 text-[11px] font-bold uppercase tracking-widest mt-1.5">{s.label}</p>
+                <p className="text-slate-300 text-[10px] mt-1 font-medium">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -227,19 +261,22 @@ export default function HRDashboard() {
           {tab === 'overview' && (
             <div className="grid gap-6 lg:grid-cols-2">
               <div>
-                <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-4">Quick Reports</p>
+                <div className="flex items-center gap-2 mb-4">
+                  <Zap className="w-3.5 h-3.5 text-emerald-500" />
+                  <p className="text-slate-700 text-sm font-bold">Quick Reports</p>
+                </div>
                 <div className="space-y-2.5">
                   {[
-                    { label: 'Daily Attendance', sub: selectedDate, icon: CheckCircle, color: 'emerald', gradient: 'from-emerald-500 to-teal-600',
+                    { label: 'Daily Attendance', sub: selectedDate, icon: CheckCircle, gradient: 'from-emerald-500 to-teal-600',
                       data: () => attendanceRegister.map(r => ({ Engineer: r.engineerName, Status: r.status, 'Check In': r.checkInTime ? new Date(r.checkInTime).toLocaleTimeString() : '-', 'Check Out': r.checkOutTime ? new Date(r.checkOutTime).toLocaleTimeString() : '-', Hours: r.hoursWorked ? r.hoursWorked.toFixed(1) : '-' })) },
-                    { label: 'Leave Summary', sub: `${leaveRequests.length} requests`, icon: Calendar, color: 'amber', gradient: 'from-amber-500 to-orange-500',
+                    { label: 'Leave Summary', sub: `${leaveRequests.length} requests`, icon: Calendar, gradient: 'from-amber-500 to-orange-500',
                       data: () => leaveRequests.map(l => ({ Engineer: l.engineerName || '', 'Start': l.startDate, 'End': l.endDate, Reason: l.reason, Status: l.status })) },
-                    { label: 'Work Reports', sub: `${reports.length} today`, icon: FileText, color: 'violet', gradient: 'from-violet-500 to-purple-600',
+                    { label: 'Work Reports', sub: `${reports.length} today`, icon: FileText, gradient: 'from-violet-500 to-purple-600',
                       data: () => reports.map(r => ({ Engineer: (r as any).engineerName || '', Client: (r as any).clientName || '', Date: r.date, 'Work Done': r.workDone, Issues: r.issues || 'None' })) },
                   ].map(item => (
-                    <div key={item.label} className="flex items-center justify-between p-4 rounded-2xl bg-white border border-slate-100 hover:border-slate-200 hover:shadow-md hover:-translate-y-px transition-all duration-150">
+                    <div key={item.label} className="flex items-center justify-between p-4 rounded-2xl bg-white border border-slate-100 hover:border-emerald-200 hover:shadow-md hover:-translate-y-0.5 transition-all duration-150">
                       <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-md`}>
+                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-sm`}>
                           <item.icon className="w-5 h-5 text-white" />
                         </div>
                         <div>
@@ -248,7 +285,7 @@ export default function HRDashboard() {
                         </div>
                       </div>
                       <div className="flex gap-1.5">
-                        <button onClick={() => exportToCSV(item.data(), item.label.toLowerCase().replace(/ /g, '-'))} className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 transition-colors"><Download className="w-3.5 h-3.5" /></button>
+                        <button onClick={() => exportToCSV(item.data(), item.label.toLowerCase().replace(/ /g, '-'))} className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 transition-colors border border-slate-200"><Download className="w-3.5 h-3.5" /></button>
                         <button onClick={() => sendEmail(item.label, item.data(), `${item.label} - ${selectedDate}`)} disabled={emailSending} className="p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-600 transition-colors border border-emerald-100 disabled:opacity-40"><Mail className="w-3.5 h-3.5" /></button>
                       </div>
                     </div>
@@ -257,18 +294,31 @@ export default function HRDashboard() {
               </div>
 
               <div>
-                <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-4">Recent Leave Requests</p>
+                <div className="flex items-center gap-2 mb-4">
+                  <Clock className="w-3.5 h-3.5 text-amber-500" />
+                  <p className="text-slate-700 text-sm font-bold">Recent Leave Requests</p>
+                  {pending > 0 && <span className="ml-auto text-[10px] font-bold text-amber-700 bg-amber-100 border border-amber-200 px-2.5 py-0.5 rounded-full">{pending} pending</span>}
+                </div>
                 <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
                   {leaveRequests.slice(0, 6).map(l => (
                     <div key={l.id} className="flex items-center justify-between p-4 rounded-2xl bg-white border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all">
-                      <div>
-                        <p className="font-bold text-slate-800 text-sm">{l.engineerName || 'Unknown'}</p>
-                        <p className="text-slate-400 text-xs font-medium mt-0.5">{new Date(l.startDate).toLocaleDateString()} – {new Date(l.endDate).toLocaleDateString()}</p>
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm shadow-sm shrink-0">
+                          {(l.engineerName || 'U')[0].toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="font-bold text-slate-800 text-sm">{l.engineerName || 'Unknown'}</p>
+                          <p className="text-slate-400 text-xs font-medium mt-0.5">{new Date(l.startDate).toLocaleDateString()} – {new Date(l.endDate).toLocaleDateString()}</p>
+                        </div>
                       </div>
                       <StatusPill status={l.status} />
                     </div>
                   ))}
-                  {leaveRequests.length === 0 && <div className="py-12 text-center text-slate-400 text-sm font-medium">No requests</div>}
+                  {leaveRequests.length === 0 && (
+                    <div className="py-12 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
+                      <p className="text-slate-400 text-sm font-medium">No leave requests</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -285,7 +335,10 @@ export default function HRDashboard() {
           {tab === 'attendance' && (
             <div className="space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="text-slate-500 text-sm font-medium">{checkIns.length} check-ins for {new Date(selectedDate).toLocaleDateString()}</p>
+                <div>
+                  <p className="text-slate-800 text-sm font-bold">{checkIns.length} check-ins for {new Date(selectedDate).toLocaleDateString()}</p>
+                  <p className="text-slate-400 text-xs font-medium mt-0.5">Daily attendance register</p>
+                </div>
                 <ActionBar
                   exportFn={() => exportToCSV(checkIns.map(c => ({ Engineer: (c as any).engineerName || '', 'Check In': new Date(c.checkInTime).toLocaleString(), 'Check Out': c.checkOutTime ? new Date(c.checkOutTime).toLocaleString() : '-', Date: c.date, Location: c.locationName || '-' })), `attendance-${selectedDate}`)}
                   emailFn={() => sendEmail('attendance', checkIns.map(c => ({ Engineer: (c as any).engineerName || '', 'Check In': c.checkInTime ? new Date(c.checkInTime).toLocaleString() : '-', Date: c.date })), `Attendance Report - ${selectedDate}`)}
@@ -294,7 +347,7 @@ export default function HRDashboard() {
               <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-slate-50/80 border-b border-slate-100">
+                    <tr className="bg-gradient-to-r from-slate-50 to-slate-50/50 border-b border-slate-100">
                       {['Engineer','Check In','Check Out','Location','Status'].map(h => (
                         <th key={h} className="px-6 py-4 text-left text-[10px] font-bold text-slate-400 uppercase tracking-widest">{h}</th>
                       ))}
@@ -302,10 +355,10 @@ export default function HRDashboard() {
                   </thead>
                   <tbody className="divide-y divide-slate-50">
                     {checkIns.map(ci => (
-                      <tr key={ci.id} className="hover:bg-slate-50/60 transition-colors">
+                      <tr key={ci.id} className="hover:bg-emerald-50/30 transition-colors">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center font-bold text-emerald-700 text-sm">{((ci as any).engineerName || 'U')[0].toUpperCase()}</div>
+                            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center font-bold text-white text-sm shadow-sm">{((ci as any).engineerName || 'U')[0].toUpperCase()}</div>
                             <span className="font-semibold text-slate-800 text-sm">{(ci as any).engineerName || 'Unknown'}</span>
                           </div>
                         </td>
@@ -324,10 +377,11 @@ export default function HRDashboard() {
                       </tr>
                     ))}
                     {checkIns.length === 0 && (
-                      <tr><td colSpan={5} className="py-20 text-center">
+                      <tr><td colSpan={5} className="py-24 text-center">
                         <div className="flex flex-col items-center gap-3">
-                          <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center"><CheckCircle className="w-6 h-6 text-slate-400" /></div>
-                          <p className="text-slate-500 text-sm font-semibold">No check-ins for this date</p>
+                          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center"><CheckCircle className="w-7 h-7 text-emerald-400" /></div>
+                          <p className="text-slate-600 text-sm font-bold">No check-ins for this date</p>
+                          <p className="text-slate-400 text-xs font-medium">Try selecting a different date</p>
                         </div>
                       </td></tr>
                     )}
@@ -341,7 +395,10 @@ export default function HRDashboard() {
           {tab === 'leave' && (
             <div className="space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="text-slate-500 text-sm font-medium">{leaveRequests.length} total leave requests</p>
+                <div>
+                  <p className="text-slate-800 text-sm font-bold">{leaveRequests.length} total leave requests</p>
+                  <p className="text-slate-400 text-xs font-medium mt-0.5">{pending} pending approval</p>
+                </div>
                 <ActionBar
                   exportFn={() => exportToCSV(leaveRequests.map(l => ({ Engineer: l.engineerName || '', 'Start': l.startDate, 'End': l.endDate, Reason: l.reason, Status: l.status })), `leave-${new Date().toISOString().split('T')[0]}`)}
                   emailFn={() => sendEmail('leave', leaveRequests.map(l => ({ Engineer: l.engineerName || '', 'Start': l.startDate, 'End': l.endDate, Status: l.status })), `Leave Summary - ${new Date().toLocaleDateString()}`)}
@@ -351,9 +408,9 @@ export default function HRDashboard() {
               <div className="space-y-3">
                 {leaveRequests.map(l => (
                   <div key={l.id} className="bg-white rounded-2xl border border-slate-100 overflow-hidden hover:border-emerald-200 hover:shadow-md transition-all duration-150">
-                    <div className="flex items-center justify-between gap-4 px-6 py-4 border-b border-slate-50">
+                    <div className="flex items-center justify-between gap-4 px-6 py-4 border-b border-slate-50 bg-gradient-to-r from-slate-50/60 to-transparent">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md shadow-amber-200">{(l.engineerName || 'U')[0].toUpperCase()}</div>
+                        <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-sm">{(l.engineerName || 'U')[0].toUpperCase()}</div>
                         <div>
                           <p className="font-bold text-slate-800 text-sm">{l.engineerName || 'Unknown'}</p>
                           <p className="text-slate-400 text-xs font-medium mt-0.5">{new Date(l.startDate).toLocaleDateString()} – {new Date(l.endDate).toLocaleDateString()}</p>
@@ -399,10 +456,11 @@ export default function HRDashboard() {
                   </div>
                 ))}
                 {leaveRequests.length === 0 && (
-                  <div className="py-20 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
+                  <div className="py-24 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
                     <div className="flex flex-col items-center gap-3">
-                      <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center"><Clock className="w-6 h-6 text-slate-400" /></div>
-                      <p className="text-slate-500 text-sm font-semibold">No leave requests</p>
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center"><Clock className="w-7 h-7 text-amber-400" /></div>
+                      <p className="text-slate-600 text-sm font-bold">No leave requests</p>
+                      <p className="text-slate-400 text-xs font-medium">All caught up!</p>
                     </div>
                   </div>
                 )}
@@ -414,7 +472,10 @@ export default function HRDashboard() {
           {tab === 'reports' && (
             <div className="space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="text-slate-500 text-sm font-medium">{reports.length} reports for {new Date(selectedDate).toLocaleDateString()}</p>
+                <div>
+                  <p className="text-slate-800 text-sm font-bold">{reports.length} reports for {new Date(selectedDate).toLocaleDateString()}</p>
+                  <p className="text-slate-400 text-xs font-medium mt-0.5">Daily work logs from engineers</p>
+                </div>
                 <ActionBar
                   exportFn={() => exportToCSV(reports.map(r => ({ Engineer: (r as any).engineerName || '', Client: (r as any).clientName || '', Date: r.date, 'Work Done': r.workDone, Issues: r.issues || 'None' })), `reports-${selectedDate}`)}
                   emailFn={() => sendEmail('reports', reports.map(r => ({ Engineer: (r as any).engineerName || '', Client: (r as any).clientName || '', Date: r.date, 'Work Done': r.workDone })), `Work Reports - ${selectedDate}`)}
@@ -423,13 +484,13 @@ export default function HRDashboard() {
               <div className="space-y-3">
                 {reports.map(r => (
                   <div key={r.id} className="bg-white rounded-2xl border border-slate-100 overflow-hidden hover:border-emerald-200 hover:shadow-md transition-all duration-150">
-                    <div className="flex items-center gap-3 px-6 py-4 border-b border-slate-50 bg-slate-50/50">
+                    <div className="flex items-center gap-3 px-6 py-4 border-b border-slate-50 bg-gradient-to-r from-slate-50/80 to-transparent">
                       <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">{((r as any).engineerName || 'E')[0]}</div>
                       <div className="flex-1 min-w-0">
                         <p className="font-bold text-slate-800 text-sm">{(r as any).engineerName || 'Staff'}</p>
                         <p className="text-slate-400 text-xs font-medium">{(r as any).clientName || ''}</p>
                       </div>
-                      <span className="text-slate-400 text-xs font-medium bg-slate-100 px-2.5 py-1 rounded-full">{new Date(r.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                      <span className="text-slate-400 text-xs font-semibold bg-white border border-slate-100 px-2.5 py-1 rounded-full shadow-sm">{new Date(r.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
                     </div>
                     <div className="px-6 py-4 space-y-3">
                       <p className="text-slate-600 text-sm leading-relaxed">{r.workDone}</p>
@@ -443,10 +504,11 @@ export default function HRDashboard() {
                   </div>
                 ))}
                 {reports.length === 0 && (
-                  <div className="py-20 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
+                  <div className="py-24 rounded-2xl border border-dashed border-slate-200 bg-white text-center">
                     <div className="flex flex-col items-center gap-3">
-                      <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center"><FileText className="w-6 h-6 text-slate-400" /></div>
-                      <p className="text-slate-500 text-sm font-semibold">No reports for this date</p>
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-100 to-purple-100 flex items-center justify-center"><FileText className="w-7 h-7 text-violet-400" /></div>
+                      <p className="text-slate-600 text-sm font-bold">No reports for this date</p>
+                      <p className="text-slate-400 text-xs font-medium">Try selecting a different date</p>
                     </div>
                   </div>
                 )}
@@ -460,7 +522,7 @@ export default function HRDashboard() {
           {/* ── ENTERPRISE ── */}
           {tab === 'enterprise' && (
             <div className="space-y-5">
-              <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-2xl p-1.5 w-fit shadow-sm">
+              <div className="flex items-center gap-1.5 bg-white border border-slate-200 rounded-2xl p-1.5 w-fit shadow-sm">
                 {(['daily', 'weekly', 'monthly', 'backup', 'payroll'] as const).map(t => (
                   <button key={t} onClick={() => setEnterpriseTab(t)}
                     className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all duration-200 ${enterpriseTab === t ? 'bg-emerald-600 text-white shadow-md shadow-emerald-200' : 'text-slate-400 hover:text-slate-700 hover:bg-slate-50'}`}>
@@ -472,7 +534,7 @@ export default function HRDashboard() {
               {enterpriseTab === 'daily' && (
                 <div className="space-y-4">
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <p className="text-slate-500 text-sm font-medium">{attendanceRegister.length} engineers for {selectedDate}</p>
+                    <p className="text-slate-600 text-sm font-semibold">{attendanceRegister.length} engineers for {selectedDate}</p>
                     <ActionBar
                       exportFn={() => exportToCSV(attendanceRegister.map(r => ({ Engineer: r.engineerName, Status: r.status, Hours: r.hoursWorked?.toFixed(1) || '-' })), `daily-${selectedDate}`)}
                       emailFn={() => sendEmail('daily', attendanceRegister.map(r => ({ Engineer: r.engineerName, Status: r.status })), `Daily Attendance - ${selectedDate}`)}
@@ -481,7 +543,7 @@ export default function HRDashboard() {
                   <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
                     <table className="w-full">
                       <thead>
-                        <tr className="bg-slate-50/80 border-b border-slate-100">
+                        <tr className="bg-gradient-to-r from-slate-50 to-slate-50/50 border-b border-slate-100">
                           {['Engineer','Status','Check In','Check Out','Hours'].map(h => (
                             <th key={h} className="px-6 py-4 text-left text-[10px] font-bold text-slate-400 uppercase tracking-widest">{h}</th>
                           ))}
@@ -489,12 +551,12 @@ export default function HRDashboard() {
                       </thead>
                       <tbody className="divide-y divide-slate-50">
                         {attendanceRegister.map((r, i) => (
-                          <tr key={i} className="hover:bg-slate-50/60 transition-colors">
+                          <tr key={i} className="hover:bg-emerald-50/20 transition-colors">
                             <td className="px-6 py-4 font-semibold text-slate-800 text-sm">{r.engineerName}</td>
                             <td className="px-6 py-4"><StatusPill status={r.status} /></td>
                             <td className="px-6 py-4 text-slate-600 text-sm font-medium">{r.checkInTime ? new Date(r.checkInTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '—'}</td>
                             <td className="px-6 py-4 text-slate-500 text-sm font-medium">{r.checkOutTime ? new Date(r.checkOutTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '—'}</td>
-                            <td className="px-6 py-4 text-slate-500 text-sm font-semibold">{r.hoursWorked ? `${r.hoursWorked.toFixed(1)}h` : '—'}</td>
+                            <td className="px-6 py-4 text-emerald-700 text-sm font-bold">{r.hoursWorked ? `${r.hoursWorked.toFixed(1)}h` : '—'}</td>
                           </tr>
                         ))}
                         {attendanceRegister.length === 0 && (
@@ -522,7 +584,7 @@ export default function HRDashboard() {
                   <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
                     <table className="w-full">
                       <thead>
-                        <tr className="bg-slate-50/80 border-b border-slate-100">
+                        <tr className="bg-gradient-to-r from-slate-50 to-slate-50/50 border-b border-slate-100">
                           {['Engineer','Days Present','Total Hours','Avg Hours/Day'].map(h => (
                             <th key={h} className="px-6 py-4 text-left text-[10px] font-bold text-slate-400 uppercase tracking-widest">{h}</th>
                           ))}
@@ -530,10 +592,10 @@ export default function HRDashboard() {
                       </thead>
                       <tbody className="divide-y divide-slate-50">
                         {engineerSummary.map((e, i) => (
-                          <tr key={i} className="hover:bg-slate-50/60 transition-colors">
+                          <tr key={i} className="hover:bg-emerald-50/20 transition-colors">
                             <td className="px-6 py-4 font-semibold text-slate-800 text-sm">{e.engineerName}</td>
                             <td className="px-6 py-4 text-slate-700 text-sm font-bold">{e.presentDays}</td>
-                            <td className="px-6 py-4 text-slate-600 text-sm font-semibold">{e.totalHours?.toFixed(1) || '—'}h</td>
+                            <td className="px-6 py-4 text-emerald-700 text-sm font-bold">{e.totalHours?.toFixed(1) || '—'}h</td>
                             <td className="px-6 py-4 text-slate-500 text-sm font-medium">{e.presentDays ? ((e.totalHours || 0) / e.presentDays).toFixed(1) : '—'}h</td>
                           </tr>
                         ))}
@@ -558,7 +620,12 @@ export default function HRDashboard() {
                   <div className="grid gap-3 md:grid-cols-2">
                     {clientReports.map((c, i) => (
                       <div key={i} className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:border-emerald-200 hover:shadow-md transition-all">
-                        <p className="font-bold text-slate-800 text-sm mb-3">{c.clientName}</p>
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                            {c.clientName?.[0] || 'C'}
+                          </div>
+                          <p className="font-bold text-slate-800 text-sm">{c.clientName}</p>
+                        </div>
                         <div className="grid grid-cols-2 gap-2">
                           <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
                             <p className="text-2xl font-black text-slate-900">{c.engineerCount}</p>
@@ -580,11 +647,14 @@ export default function HRDashboard() {
 
               {enterpriseTab === 'backup' && (
                 <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                  <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-4">Backup Usage</p>
+                  <div className="flex items-center gap-2 mb-5">
+                    <Database className="w-4 h-4 text-emerald-500" />
+                    <p className="text-slate-700 text-sm font-bold">Backup Usage</p>
+                  </div>
                   {backupUsage ? (
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {Object.entries(backupUsage).map(([k, v]) => (
-                        <div key={k} className="bg-slate-50 rounded-xl p-4 border border-slate-100 text-center">
+                        <div key={k} className="bg-gradient-to-br from-slate-50 to-white rounded-xl p-4 border border-slate-100 text-center">
                           <p className="text-2xl font-black text-slate-900">{String(v)}</p>
                           <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-1">{k}</p>
                         </div>
@@ -606,7 +676,7 @@ export default function HRDashboard() {
                   <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
                     <table className="w-full">
                       <thead>
-                        <tr className="bg-slate-50/80 border-b border-slate-100">
+                        <tr className="bg-gradient-to-r from-slate-50 to-slate-50/50 border-b border-slate-100">
                           {['Engineer','Days Present','Amount'].map(h => (
                             <th key={h} className="px-6 py-4 text-left text-[10px] font-bold text-slate-400 uppercase tracking-widest">{h}</th>
                           ))}
@@ -614,7 +684,7 @@ export default function HRDashboard() {
                       </thead>
                       <tbody className="divide-y divide-slate-50">
                         {payrollData.map((p, i) => (
-                          <tr key={i} className="hover:bg-slate-50/60 transition-colors">
+                          <tr key={i} className="hover:bg-emerald-50/20 transition-colors">
                             <td className="px-6 py-4 font-semibold text-slate-800 text-sm">{p.engineerName}</td>
                             <td className="px-6 py-4 text-slate-700 text-sm font-bold">{p.presentDays}</td>
                             <td className="px-6 py-4 text-emerald-700 text-sm font-bold">₹{p.amount?.toLocaleString() || '—'}</td>
@@ -634,7 +704,10 @@ export default function HRDashboard() {
           {/* ── PROFILES ── */}
           {tab === 'profiles' && (
             <div className="space-y-5">
-              <p className="text-slate-500 text-sm font-medium">{profileTotal} staff profiles</p>
+              <div>
+                <p className="text-slate-800 text-sm font-bold">{profileTotal} staff profiles</p>
+                <p className="text-slate-400 text-xs font-medium mt-0.5">All registered engineers and staff</p>
+              </div>
               <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {engineerProfiles.map(ep => {
                   const role = ((ep as any).role || 'engineer').toLowerCase();
@@ -670,10 +743,11 @@ export default function HRDashboard() {
                   );
                 })}
                 {engineerProfiles.length === 0 && (
-                  <div className="col-span-3 py-20 text-center">
+                  <div className="col-span-3 py-24 text-center">
                     <div className="flex flex-col items-center gap-3">
-                      <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center"><Users className="w-6 h-6 text-slate-400" /></div>
-                      <p className="text-slate-500 text-sm font-semibold">No staff profiles</p>
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center"><Users className="w-7 h-7 text-emerald-400" /></div>
+                      <p className="text-slate-600 text-sm font-bold">No staff profiles</p>
+                      <p className="text-slate-400 text-xs font-medium">Add users to see profiles here</p>
                     </div>
                   </div>
                 )}
