@@ -335,7 +335,7 @@ export default function HRDashboard() {
               )}
 
               {/* ── MUSTER ── */}
-              {tab==='muster'&&<div className="bg-white rounded-xl border border-slate-200 p-6"><MusterRoll/></div>}
+              {tab==='muster'&&<div className="bg-white rounded-xl border border-slate-200 p-6 overflow-hidden"><MusterRoll/></div>}
 
               {/* ── ATTENDANCE ── */}
               {tab==='attendance'&&(

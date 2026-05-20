@@ -5,7 +5,7 @@ import {
   ResponsiveContainer, XAxis, YAxis, CartesianGrid,
 } from 'recharts';
 import {
-  Users, Building2, UserCog, Activity, Plus, UserPlus, X, Shield, Settings,
+  Users, Building2, UserCog, Activity, Plus, UserPlus, X, Shield, Settings as SettingsIcon,
   TrendingUp, ChevronLeft, ChevronRight, LayoutDashboard,
   Calendar, Pencil, Trash2, Eye, ArrowUpRight, CheckCircle, AlertCircle,
 } from 'lucide-react';
@@ -13,6 +13,7 @@ import { User, Client, Assignment } from '../../types';
 import { StorageService } from '../../lib/storage';
 import CompanyProfile from '../CompanyProfile';
 import MusterRoll from '../MusterRoll';
+import Settings from '../Settings';
 
 type Tab = 'overview' | 'users' | 'clients' | 'assignments' | 'muster' | 'company-profile' | 'settings';
 
@@ -23,7 +24,7 @@ const NAV: { id: Tab; label: string; icon: React.ElementType }[] = [
   { id: 'assignments',     label: 'Assignments', icon: UserCog         },
   { id: 'muster',          label: 'Muster Roll', icon: TrendingUp      },
   { id: 'company-profile', label: 'Company',     icon: Shield          },
-  { id: 'settings',        label: 'Settings',    icon: Settings        },
+  { id: 'settings',        label: 'Settings',    icon: SettingsIcon    },
 ];
 
 const F  = 'w-full bg-white border border-slate-200 focus:border-violet-500 focus:ring-2 focus:ring-violet-50 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all';
@@ -566,16 +567,9 @@ export default function AdminDashboard() {
                 </div>
               )}
 
-              {tab === 'muster' && <div className="bg-white rounded-xl border border-slate-200 p-6"><MusterRoll /></div>}
+              {tab === 'muster' && <div className="bg-white rounded-xl border border-slate-200 p-6 overflow-hidden"><MusterRoll /></div>}
               {tab === 'company-profile' && <CompanyProfile />}
-              {tab === 'settings' && (
-                <div className="bg-white rounded-xl border border-slate-200 p-12 text-center">
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center"><Settings className="w-5 h-5 text-slate-400" /></div>
-                    <p className="text-slate-500 text-sm font-medium">Settings coming soon</p>
-                  </div>
-                </div>
-              )}
+              {tab === 'settings' && <Settings />}
 
             </motion.div>
           </AnimatePresence>
