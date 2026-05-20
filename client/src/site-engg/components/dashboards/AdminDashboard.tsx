@@ -457,10 +457,10 @@ export default function AdminDashboard() {
                               <td className="px-5 py-4"><span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${roleBadge(u.role)}`}>{u.role}</span></td>
                               <td className="px-5 py-4"><p className="text-slate-600 text-xs">{u.email}</p><p className="text-slate-400 text-xs">{u.phone}</p></td>
                               <td className="px-5 py-4">
-                                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                  <motion.button whileTap={{ scale: 0.9 }} onClick={() => setViewItem({ type: 'user', data: u })} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors"><Eye className="w-3.5 h-3.5" /></motion.button>
-                                  <motion.button whileTap={{ scale: 0.9 }} onClick={() => setEditUser(u)} className="p-1.5 rounded-lg hover:bg-violet-50 text-slate-400 hover:text-violet-600 transition-colors"><Pencil className="w-3.5 h-3.5" /></motion.button>
-                                  <motion.button whileTap={{ scale: 0.9 }} onClick={() => deleteUser(u.id)} className="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-500 transition-colors"><Trash2 className="w-3.5 h-3.5" /></motion.button>
+                                <div className="flex items-center gap-1">
+                                  <motion.button whileTap={{ scale: 0.9 }} onClick={() => setViewItem({ type: 'user', data: u })} className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 transition-colors"><Eye className="w-3.5 h-3.5" /></motion.button>
+                                  <motion.button whileTap={{ scale: 0.9 }} onClick={() => setEditUser(u)} className="p-1.5 rounded-lg bg-violet-50 hover:bg-violet-100 text-violet-500 hover:text-violet-700 transition-colors"><Pencil className="w-3.5 h-3.5" /></motion.button>
+                                  <motion.button whileTap={{ scale: 0.9 }} onClick={() => deleteUser(u.id)} className="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-400 hover:text-red-600 transition-colors"><Trash2 className="w-3.5 h-3.5" /></motion.button>
                                 </div>
                               </td>
                             </motion.tr>
@@ -512,10 +512,10 @@ export default function AdminDashboard() {
                             <div className={`w-10 h-10 rounded-full ${color} flex items-center justify-center text-white font-bold text-sm`}>{c.name?.charAt(0)}</div>
                             <div><p className="font-semibold text-slate-800 text-sm">{c.name}</p><p className="text-slate-400 text-xs">{c.contactPerson}</p><p className="text-slate-400 text-xs">{c.email}</p></div>
                           </div>
-                          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <motion.button whileTap={{ scale: 0.9 }} onClick={() => setViewItem({ type: 'client', data: c })} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors"><Eye className="w-3.5 h-3.5" /></motion.button>
-                            <motion.button whileTap={{ scale: 0.9 }} onClick={() => setEditClient(c)} className="p-1.5 rounded-lg hover:bg-violet-50 text-slate-400 hover:text-violet-600 transition-colors"><Pencil className="w-3.5 h-3.5" /></motion.button>
-                            <motion.button whileTap={{ scale: 0.9 }} onClick={() => deleteClient(c.id)} className="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-500 transition-colors"><Trash2 className="w-3.5 h-3.5" /></motion.button>
+                          <div className="flex gap-1">
+                            <motion.button whileTap={{ scale: 0.9 }} onClick={() => setViewItem({ type: 'client', data: c })} className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 transition-colors"><Eye className="w-3.5 h-3.5" /></motion.button>
+                            <motion.button whileTap={{ scale: 0.9 }} onClick={() => setEditClient(c)} className="p-1.5 rounded-lg bg-violet-50 hover:bg-violet-100 text-violet-500 hover:text-violet-700 transition-colors"><Pencil className="w-3.5 h-3.5" /></motion.button>
+                            <motion.button whileTap={{ scale: 0.9 }} onClick={() => deleteClient(c.id)} className="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-400 hover:text-red-600 transition-colors"><Trash2 className="w-3.5 h-3.5" /></motion.button>
                           </div>
                         </motion.div>
                       );
@@ -553,9 +553,9 @@ export default function AdminDashboard() {
                             <td className="px-5 py-4"><div className="flex items-center gap-3"><div className="w-7 h-7 rounded-full bg-violet-500 flex items-center justify-center text-white font-semibold text-xs">{(a.clientName||'C')[0]}</div><span className="font-medium text-slate-700 text-sm">{a.clientName||a.clientId}</span></div></td>
                             <td className="px-5 py-4 text-slate-500 text-sm">{a.assignedDate ? new Date(a.assignedDate).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—'}</td>
                             <td className="px-5 py-4">
-                              <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <motion.button whileTap={{ scale: 0.9 }} onClick={() => setEditAssignment(a)} className="p-1.5 rounded-lg hover:bg-violet-50 text-slate-400 hover:text-violet-600 transition-colors"><Pencil className="w-3.5 h-3.5" /></motion.button>
-                                <motion.button whileTap={{ scale: 0.9 }} onClick={() => deleteAssignment(a.id)} className="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-500 transition-colors"><Trash2 className="w-3.5 h-3.5" /></motion.button>
+                              <div className="flex items-center gap-1">
+                                <motion.button whileTap={{ scale: 0.9 }} onClick={() => setEditAssignment(a)} className="p-1.5 rounded-lg bg-violet-50 hover:bg-violet-100 text-violet-500 hover:text-violet-700 transition-colors"><Pencil className="w-3.5 h-3.5" /></motion.button>
+                                <motion.button whileTap={{ scale: 0.9 }} onClick={() => deleteAssignment(a.id)} className="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-400 hover:text-red-600 transition-colors"><Trash2 className="w-3.5 h-3.5" /></motion.button>
                               </div>
                             </td>
                           </motion.tr>

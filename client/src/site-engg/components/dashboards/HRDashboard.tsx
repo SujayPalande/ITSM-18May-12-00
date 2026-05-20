@@ -7,7 +7,7 @@ import {
 import {
   Users, CheckCircle, XCircle, Clock, Download, FileText, TrendingUp, Database,
   Mail, Send, Calendar, AlertCircle, ChevronLeft, ChevronRight,
-  RefreshCw, LayoutDashboard, MapPin,
+  RefreshCw, LayoutDashboard, MapPin, Eye, Pencil, Trash2, X, Phone, Briefcase,
 } from 'lucide-react';
 import { CheckIn, LeaveRequest, Engineer, DailyReport } from '../../types';
 import { exportToCSV } from '../../lib/export';
@@ -97,6 +97,8 @@ export default function HRDashboard() {
   const profileLimit = 20;
   const [backupSelections, setBackupSelections] = useState<Record<string,string>>({});
   const [chartData, setChartData] = useState<{ trend: any[]; leaveStatus: any[] }>({ trend: [], leaveStatus: [] });
+  const [viewStaff, setViewStaff] = useState<any>(null);
+  const [editStaff, setEditStaff] = useState<any>(null);
 
   useEffect(() => { loadData(); if (tab==='profiles') loadProfiles(); if (['enterprise','overview'].includes(tab)) loadEnterprise(); }, [tab, selectedDate, enterpriseTab, weeklyStart, weeklyEnd, selectedMonth]);
   useEffect(() => { loadProfiles(); }, [profilePage]);
@@ -371,39 +373,42 @@ export default function HRDashboard() {
                     <div><p className="text-slate-800 text-sm font-bold">{leaveRequests.length} leave requests</p><p className="text-slate-400 text-xs mt-0.5">{pending} pending approval</p></div>
                     <ActionBar exportFn={()=>exportToCSV(leaveRequests.map(l=>({Engineer:l.engineerName||'','Start':l.startDate,'End':l.endDate,Reason:l.reason,Status:l.status})),`leave-${new Date().toISOString().split('T')[0]}`)} emailFn={()=>sendEmail('leave',leaveRequests.map(l=>({Engineer:l.engineerName||'','Start':l.startDate,'End':l.endDate,Status:l.status})),`Leave Summary - ${new Date().toLocaleDateString()}`)} showDate={false}/>
                   </div>
-                  <div className="space-y-3">
+                  <div className="bg-white rounded-xl border border-slate-200 overflow-hidden divide-y divide-slate-100">
                     {leaveRequests.map((l,idx)=>(
-                      <motion.div key={l.id} initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} transition={{delay:idx*0.05}}
-                        whileHover={{y:-2}} className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:border-emerald-200 hover:shadow-sm transition-all">
-                        <div className="flex items-center justify-between gap-4 px-5 py-4 border-b border-slate-100">
-                          <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-sm">{(l.engineerName||'U')[0].toUpperCase()}</div>
-                            <div><p className="font-semibold text-slate-800 text-sm">{l.engineerName||'Unknown'}</p><p className="text-slate-400 text-xs mt-0.5">{new Date(l.startDate).toLocaleDateString()} – {new Date(l.endDate).toLocaleDateString()}</p></div>
+                      <motion.div key={l.id} initial={{opacity:0,x:-8}} animate={{opacity:1,x:0}} transition={{delay:idx*0.03}}
+                        className="px-5 py-3 hover:bg-slate-50 transition-colors">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-xs shrink-0">{(l.engineerName||'U')[0].toUpperCase()}</div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <p className="font-semibold text-slate-800 text-sm">{l.engineerName||'Unknown'}</p>
+                              <span className="text-slate-400 text-xs">{new Date(l.startDate).toLocaleDateString('en-GB',{day:'2-digit',month:'short'})} – {new Date(l.endDate).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}</span>
+                              <StatusPill status={l.status}/>
+                            </div>
+                            <p className="text-slate-500 text-xs mt-0.5 truncate">{l.reason}</p>
+                            {l.backupEngineerName&&<p className="text-slate-400 text-xs mt-0.5 flex items-center gap-1"><Users className="w-2.5 h-2.5"/>Backup: <span className="text-slate-600 font-medium ml-1">{l.backupEngineerName}</span></p>}
                           </div>
-                          <StatusPill status={l.status}/>
-                        </div>
-                        <div className="px-5 py-4 space-y-3">
-                          <p className="text-slate-600 text-sm leading-relaxed">{l.reason}</p>
-                          {l.backupEngineerName&&<p className="text-slate-400 text-xs flex items-center gap-1.5"><Users className="w-3 h-3"/>Backup: <span className="text-slate-700 font-semibold ml-1">{l.backupEngineerName}</span></p>}
                           {l.status==='pending'&&(
-                            <div className="space-y-3 pt-1">
-                              <div>
-                                <label className="block text-xs font-semibold text-slate-500 mb-1.5">Select Backup Engineer</label>
-                                <select value={backupSelections[l.id]||''} onChange={e=>setBackupSelections(prev=>({...prev,[l.id]:e.target.value}))} className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg px-3 py-2.5 text-sm text-slate-700 outline-none transition-all appearance-none">
-                                  <option value="">No backup needed</option>
-                                  {engineers.filter((e:any)=>e.id!==l.engineerId && e.role==='engineer').map((e:any)=><option key={e.id} value={e.id}>{e.name}</option>)}
-                                </select>
-                              </div>
-                              <div className="flex gap-2">
-                                <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.97}} onClick={()=>handleLeave(l.id,'approved')} disabled={loading} className="flex-1 py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-sm font-semibold border border-emerald-200 transition-colors disabled:opacity-40 flex items-center justify-center gap-1.5"><CheckCircle className="w-3.5 h-3.5"/>Approve</motion.button>
-                                <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.97}} onClick={()=>handleLeave(l.id,'rejected')} disabled={loading} className="flex-1 py-2 rounded-lg bg-red-50 hover:bg-red-100 text-red-700 text-sm font-semibold border border-red-200 transition-colors disabled:opacity-40 flex items-center justify-center gap-1.5"><XCircle className="w-3.5 h-3.5"/>Reject</motion.button>
-                              </div>
+                            <div className="flex items-center gap-2 shrink-0">
+                              <select value={backupSelections[l.id]||''} onChange={e=>setBackupSelections(prev=>({...prev,[l.id]:e.target.value}))}
+                                className="bg-white border border-slate-200 focus:border-emerald-500 rounded-lg px-2 py-1.5 text-xs text-slate-700 outline-none transition-all appearance-none max-w-[130px]">
+                                <option value="">No backup</option>
+                                {engineers.filter((e:any)=>e.id!==l.engineerId && e.role==='engineer').map((e:any)=><option key={e.id} value={e.id}>{e.name}</option>)}
+                              </select>
+                              <motion.button whileTap={{scale:0.95}} onClick={()=>handleLeave(l.id,'approved')} disabled={loading}
+                                className="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold transition-colors disabled:opacity-40 flex items-center gap-1">
+                                <CheckCircle className="w-3 h-3"/>Approve
+                              </motion.button>
+                              <motion.button whileTap={{scale:0.95}} onClick={()=>handleLeave(l.id,'rejected')} disabled={loading}
+                                className="px-3 py-1.5 rounded-lg bg-red-500 hover:bg-red-600 text-white text-xs font-semibold transition-colors disabled:opacity-40 flex items-center gap-1">
+                                <XCircle className="w-3 h-3"/>Reject
+                              </motion.button>
                             </div>
                           )}
                         </div>
                       </motion.div>
                     ))}
-                    {leaveRequests.length===0&&<div className="py-16 rounded-xl border border-dashed border-slate-200 bg-white text-center"><div className="flex flex-col items-center gap-2"><div className="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center"><Clock className="w-5 h-5 text-amber-400"/></div><p className="text-slate-500 text-sm font-medium">No leave requests</p></div></div>}
+                    {leaveRequests.length===0&&<div className="py-16 text-center"><div className="flex flex-col items-center gap-2"><div className="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center"><Clock className="w-5 h-5 text-amber-400"/></div><p className="text-slate-500 text-sm font-medium">No leave requests</p></div></div>}
                   </div>
                 </div>
               )}
@@ -580,6 +585,7 @@ export default function HRDashboard() {
                   <motion.div variants={stagger} initial="initial" animate="animate" className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                     {engineerProfiles.map(ep=>{
                       const role=((ep as any).role||'engineer').toLowerCase();
+                      const displayName=(ep as any).full_name||(ep as any).name||'Unknown';
                       const cfg:Record<string,{bg:string;text:string;av:string}>={
                         admin:{bg:'bg-violet-50',text:'text-violet-700',av:'bg-violet-600'},
                         engineer:{bg:'bg-blue-50',text:'text-blue-700',av:'bg-blue-600'},
@@ -589,14 +595,23 @@ export default function HRDashboard() {
                       const c=cfg[role]||cfg.engineer;
                       return (
                         <motion.div key={(ep as any).id||(ep as any).userId} variants={fadeUp} whileHover={{y:-2,boxShadow:'0 8px 20px -4px rgba(0,0,0,0.06)'}}
-                          className="bg-white rounded-xl border border-slate-200 p-4 hover:border-emerald-200 transition-all cursor-default">
+                          className="bg-white rounded-xl border border-slate-200 p-4 hover:border-emerald-200 transition-all">
                           <div className="flex items-center gap-3 mb-3">
-                            <div className={`w-10 h-10 rounded-full ${c.av} flex items-center justify-center text-white font-bold text-sm shrink-0`}>{((ep as any).name||'E')[0].toUpperCase()}</div>
-                            <div className="min-w-0"><p className="font-semibold text-slate-800 text-sm truncate">{(ep as any).name||'Staff'}</p><p className="text-slate-400 text-xs truncate">{(ep as any).email||''}</p></div>
+                            <div className={`w-10 h-10 rounded-full ${c.av} flex items-center justify-center text-white font-bold text-sm shrink-0`}>{(displayName[0]||'?').toUpperCase()}</div>
+                            <div className="min-w-0 flex-1">
+                              <p className="font-semibold text-slate-800 text-sm truncate">{displayName}</p>
+                              <p className="text-slate-400 text-xs truncate">{(ep as any).email||''}</p>
+                            </div>
                           </div>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-2 mb-3">
                             <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${c.bg} ${c.text}`}>{role}</span>
                             {(ep as any).phone&&<span className="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-50 text-slate-500">{(ep as any).phone}</span>}
+                            {(ep as any).designation&&<span className="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-50 text-slate-600">{(ep as any).designation}</span>}
+                          </div>
+                          <div className="flex gap-1.5 pt-2 border-t border-slate-100">
+                            <button onClick={()=>setViewStaff(ep)} className="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold transition-colors"><Eye className="w-3 h-3"/>View</button>
+                            <button onClick={()=>setEditStaff({...(ep as any), _displayName: displayName})} className="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold transition-colors"><Pencil className="w-3 h-3"/>Edit</button>
+                            <button onClick={async()=>{ if(!confirm(`Delete ${displayName}?`)) return; try{ await StorageService.deleteUser((ep as any).id||(ep as any).userId); await loadProfiles(); }catch(e){console.error(e);} }} className="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 text-xs font-semibold transition-colors"><Trash2 className="w-3 h-3"/>Delete</button>
                           </div>
                         </motion.div>
                       );
@@ -619,6 +634,94 @@ export default function HRDashboard() {
           </AnimatePresence>
         </div>
       </main>
+
+      {/* ── VIEW STAFF MODAL ── */}
+      {viewStaff && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm" onClick={()=>setViewStaff(null)}>
+          <motion.div initial={{opacity:0,scale:0.95}} animate={{opacity:1,scale:1}} exit={{opacity:0,scale:0.95}}
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden" onClick={e=>e.stopPropagation()}>
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold">
+                  {((viewStaff.full_name||viewStaff.name||'?')[0]).toUpperCase()}
+                </div>
+                <div>
+                  <p className="font-bold text-slate-800 text-sm">{viewStaff.full_name||viewStaff.name||'Unknown'}</p>
+                  <p className="text-slate-400 text-xs">{viewStaff.role||'engineer'}</p>
+                </div>
+              </div>
+              <button onClick={()=>setViewStaff(null)} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 transition-colors"><X className="w-4 h-4"/></button>
+            </div>
+            <div className="px-6 py-4 space-y-2">
+              {[
+                {icon: Mail, label: 'Email', val: viewStaff.email},
+                {icon: Phone, label: 'Phone', val: viewStaff.phone||viewStaff.mobile_number},
+                {icon: Briefcase, label: 'Designation', val: viewStaff.designation},
+                {icon: MapPin, label: 'City', val: viewStaff.city},
+                {icon: Calendar, label: 'Joined', val: viewStaff.created_at ? new Date(viewStaff.created_at).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) : null},
+              ].filter(r=>r.val).map(row=>(
+                <div key={row.label} className="flex items-center gap-3 py-2 border-b border-slate-50 last:border-0">
+                  <div className="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0">
+                    <row.icon className="w-3.5 h-3.5 text-slate-500"/>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">{row.label}</p>
+                    <p className="text-sm font-medium text-slate-700">{row.val}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="px-6 pb-5">
+              <button onClick={()=>setViewStaff(null)} className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition-colors">Close</button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* ── EDIT STAFF MODAL ── */}
+      {editStaff && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm" onClick={()=>setEditStaff(null)}>
+          <motion.div initial={{opacity:0,scale:0.95}} animate={{opacity:1,scale:1}} exit={{opacity:0,scale:0.95}}
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden" onClick={e=>e.stopPropagation()}>
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+              <p className="font-bold text-slate-800 text-sm">Edit — {editStaff._displayName}</p>
+              <button onClick={()=>setEditStaff(null)} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 transition-colors"><X className="w-4 h-4"/></button>
+            </div>
+            <div className="px-6 py-4 space-y-3">
+              {([
+                {key:'full_name', label:'Full Name', type:'text'},
+                {key:'email', label:'Email', type:'email'},
+                {key:'phone', label:'Phone', type:'text'},
+                {key:'designation', label:'Designation', type:'text'},
+              ] as {key:string; label:string; type:string}[]).map(field=>(
+                <div key={field.key}>
+                  <label className="block text-xs font-semibold text-slate-500 mb-1">{field.label}</label>
+                  <input type={field.type} value={editStaff[field.key]||''} onChange={e=>setEditStaff({...editStaff,[field.key]:e.target.value})}
+                    className={F} placeholder={field.label}/>
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-3 px-6 pb-5">
+              <button onClick={()=>setEditStaff(null)} className="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-sm font-semibold hover:bg-slate-50 transition-colors">Cancel</button>
+              <motion.button whileTap={{scale:0.97}} onClick={async()=>{
+                try {
+                  await StorageService.updateUser(editStaff.id||editStaff.userId, {
+                    name: editStaff.full_name||editStaff.name,
+                    email: editStaff.email,
+                    phone: editStaff.phone,
+                    designation: editStaff.designation,
+                  } as any);
+                  setEditStaff(null);
+                  await loadProfiles();
+                } catch(e){ console.error(e); }
+              }} className="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold transition-colors">
+                Save Changes
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
     </div>
   );
 }
