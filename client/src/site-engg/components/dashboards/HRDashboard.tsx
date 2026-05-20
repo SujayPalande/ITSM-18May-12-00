@@ -391,7 +391,7 @@ export default function HRDashboard() {
                                 <label className="block text-xs font-semibold text-slate-500 mb-1.5">Select Backup Engineer</label>
                                 <select value={backupSelections[l.id]||''} onChange={e=>setBackupSelections(prev=>({...prev,[l.id]:e.target.value}))} className="w-full bg-white border border-slate-200 focus:border-emerald-500 rounded-lg px-3 py-2.5 text-sm text-slate-700 outline-none transition-all appearance-none">
                                   <option value="">No backup needed</option>
-                                  {engineers.filter((e:any)=>e.id!==l.engineerId).map((e:any)=><option key={e.id} value={e.id}>{e.name}</option>)}
+                                  {engineers.filter((e:any)=>e.id!==l.engineerId && e.role==='engineer').map((e:any)=><option key={e.id} value={e.id}>{e.name}</option>)}
                                 </select>
                               </div>
                               <div className="flex gap-2">

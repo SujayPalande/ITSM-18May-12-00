@@ -75,7 +75,7 @@ export default function MusterRoll({ clientId, engineerIds }: MusterRollProps) {
     const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
     return (
-      <div className="w-full overflow-x-auto">
+      <div>
         <div style={{ minWidth: `${Math.max(900, 160 + daysInMonth * 38 + 60)}px` }}>
           <table className="w-full border-collapse text-xs">
             <thead>
@@ -209,7 +209,7 @@ export default function MusterRoll({ clientId, engineerIds }: MusterRollProps) {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     return (
-      <div className="w-full overflow-x-auto">
+      <div>
         <div style={{ minWidth: '820px' }}>
           <table className="w-full border-collapse text-xs">
             <thead>
@@ -341,7 +341,7 @@ export default function MusterRoll({ clientId, engineerIds }: MusterRollProps) {
       </div>
 
       {/* Table */}
-      <div className="rounded-xl border border-slate-200 overflow-hidden bg-white">
+      <div className="rounded-xl border border-slate-200 bg-white" style={{ overflowX: view === 'monthly' || view === 'yearly' ? 'auto' : 'hidden' }}>
         {view === 'yearly' ? renderYearlyMuster() : view === 'monthly' ? renderMonthlyMuster() : renderDailyMuster()}
       </div>
 
