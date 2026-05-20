@@ -1,0 +1,31 @@
+
+> rest-express@1.0.0 dev
+> cross-env NODE_ENV=development tsx server/index.ts
+
+[1G[0K[dotenv@17.2.3] injecting env (11) from .env [2m-- tip: ⚙️  enable debug logging with { debug: true }[0m
+🔗 Connecting to MySQL database: 127.0.0.1:3306/itsm_helpdesk
+Ignoring invalid configuration option passed to Connection: acquireTimeout. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
+Ignoring invalid configuration option passed to Connection: timeout. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
+[dotenv@17.2.3] injecting env (0) from .env [2m-- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com[0m
+[Seed] Creating user: admin (admin@example.com)
+[Seed] Created user with ID: 1
+[Seed] Creating user: agent (agent@example.com)
+[Seed] Created user with ID: 2
+[Seed] Creating user: user (user@example.com)
+[Seed] Created user with ID: 3
+[Seed] Creating user: shivam (shivam.jagtap@cybaemtech.com)
+[Seed] Created user with ID: 4
+5:06:39 AM [express] 🚀 Server running at http://0.0.0.0:5000
+
+[1m[33mwarn[39m[22m - The class `ease-[cubic-bezier(0.4,0,0.2,1)]` is ambiguous and matches multiple utilities.
+[1m[33mwarn[39m[22m - If this is content and not a class, replace it with `ease-&lsqb;cubic-bezier(0.4,0,0.2,1)&rsqb;` to silence this warning.
+[2m5:07:06 AM[22m [31m[1m[vite][22m[39m Pre-transform error: /home/runner/workspace/client/src/site-engg/components/dashboards/ClientDashboard.tsx: Unexpected token (9:29)
+
+[0m [90m  7 |[39m                                 [33m<[39m[33mspan[39m className[33m=[39m[32m"px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200 text-xs font-semibold"[39m[33m>[39m[33mActive[39m[33m<[39m[33m/[39m[33mspan[39m[33m>[39m
+ [90m  8 |[39m                               )}
+[31m[1m>[22m[39m[90m  9 |[39m                             [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m    |[39m                              [31m[1m^[22m[39m
+ [90m 10 |[39m                           [33m<[39m[33m/[39m[33mmotion[39m[33m.[39mdiv[33m>[39m
+ [90m 11 |[39m                         )[33m;[39m
+ [90m 12 |[39m                       }) [33m:[39m ([0m
+[1G[0K⠙[1G[0K
